@@ -1,6 +1,5 @@
 class Pet
-
-  def initialize name
+  def initialize(name)
     @name = name
     @asleep = false
     @health = 100
@@ -10,19 +9,18 @@ class Pet
     @workout = 100
     @party = 100
 
-  puts @name + ' появился на свет и готов жить жизнь вместе с тобой!'
+    puts @name + ' появился на свет и готов жить жизнь вместе с тобой!'
   end
 
   def play
-    puts 'Вы играети с '+@name + '. Какова милота ^_^'
+    puts 'Вы играети с ' + @name + '. Какова милота ^_^'
     @happyness += 10
-    @energy -= 10
     passageOfTime
   end
 
   def eat
     puts 'Не то чтобы по вкусу вкусно, но по сути вкусно. Спасибо :)'
-    @stuffInBelly  += 10
+    @stuffInBelly += 10
     passageOfTime
   end
 
@@ -75,6 +73,15 @@ class Pet
   end
 
   def info
+    puts 'health - ' + @health.to_s
+    puts 'happyness -  ' + @happyness.to_s
+    puts 'stuffInBelly - ' + @stuffInBelly.to_s
+    puts 'energy - ' + @enegry.to_s
+    puts 'workout - ' + @workout.to_s
+    puts 'party - ' + @party.to_s
+  end
+
+  def comntrol
     puts 'Нажмите 1 чтобы поиграть'
     puts 'Нажмите 2 чтобынакормить'
     puts 'Нажмите 3 чтобы уложить спать'
@@ -85,6 +92,8 @@ class Pet
     puts 'Нажмите 8 чтобы подбросить'
     puts 'Нажмите 9 чтобы уложить спать'
     puts 'Нажмите 10 чтобы разбудить'
+    puts "Нажмите на 11 чтобы оценить состояние #{@name}"
+    puts 'Нажмите на 12 чтобы посмотреть все команды'
   end
 
   private
@@ -92,7 +101,10 @@ class Pet
   def passageOfTime
     if @stuffInBelly > 0
       @stuffInBelly -= 5
-      @energy += 5
+      @health -= 5
+      @happyness -= 5
+      @workout -= 5
+      @party -= 5
     elsif @asleep
       @asleep = false
       @stuffInBelly -= 5
@@ -100,36 +112,27 @@ class Pet
   end
 
   def hp_need
-    if @health <= 20
-      puts 'Я вижу свет в конце тунеля. Так продолжать нельзя...'
-    end
+    puts 'Я вижу свет в конце тунеля. Так продолжать нельзя...' if @health <= 20
   end
 
   def happy_need
-    if @happyness <= 2
-      puts 'Сумно, видчуваю нибы сумно :('
-    end
+    puts 'Сумно, видчуваю нибы сумно :(' if @happyness <= 2
   end
 
   def move_need
     if @enegry < 100 && @enegry > 40
       puts 'Чуствую себя сильным и забавным! Отправь меня в спортзал или на вечеринку :)'
-    else
-      if @enegry <= 20
-        puts 'Наверное на сегодня хватит, Мне нужно поспать.'
+    elsif @enegry <= 20
+      puts 'Наверное на сегодня хватит, Мне нужно поспать.'
     end
   end
 
   def workout_need
-    if @workout <= 20
-      puts 'Каждому нужны тренировки и мне тоже. Камон в спортзал!'
-    end
+    puts 'Каждому нужны тренировки и мне тоже. Камон в спортзал!' if @workout <= 20
   end
 
   def party_need
-    if @party <= 30
-      puts 'Самое время закатить вечеринку ;3'
-    end
+    puts 'Самое время закатить вечеринку ;3' if @party <= 30
   end
 
   def death
@@ -142,7 +145,6 @@ class Pet
     end
   end
 end
-
 
 puts 'Как назовем вашего питомца?'
 name = gets.chomp
@@ -158,10 +160,11 @@ puts 'Нажмите 7 чтобы покупать'
 puts 'Нажмите 8 чтобы подбросить'
 puts 'Нажмите 9 чтобы уложить спать'
 puts 'Нажмите 10 чтобы разбудить'
-puts 'Нажмите 11 чтобы посмотреть команды'
+puts "Нажмите на 11 чтобы оценить состояние #{@name}"
+puts 'Нажмите на 12 чтобы посмотреть все команды'
 
 command = gets.chomp
-until command == 'exit' do
+until command == 'exit'
   case command
   when '1'
     pet.play
@@ -185,9 +188,10 @@ until command == 'exit' do
     pet.wake_up
   when '11'
     pet.info
+  when '12'
+    pet.comntrol
   else
-    puts 'Выберите команду от 1 до 11. Нажмите 11, чтобы посмотреть возможные команды'
+    puts 'Выберите команду от 1 до 12. Нажмите 12, чтобы посмотреть возможные команды'
   end
   command = gets.chomp
-end
 end

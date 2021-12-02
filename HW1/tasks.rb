@@ -51,10 +51,10 @@ p'---------------------------'
 p "7. Дан целочисленный массив. Заменить все положительные элементы на значение минимального."
 p "arr = [1, -5, 3, 0.85, 5, 77]"
 p "a = arr.min"
-p "arr.map {|e| e>0 ? a:e}"
+p "arr.map { |e| e > 0 ? a:e }"
 arr = [1, -5, 3, 0.85, 5, 77]
 a = arr.min
-p arr.map {|e| e>0 ? a:e}
+p arr.map { |e| e > 0 ? a:e }
 p'---------------------------'
 
 p "8. Дан целочисленный массив. Заменить все положительные элементы на значение максимального."
@@ -299,9 +299,9 @@ p'------------------------'
 
 p "39. Дан целочисленный массив. Преобразовать его, прибавив к четным числам первый элемент. Первый и последний элементы массива не изменять."
 p"arr = [185, -5, 7, -2, 88, -2, -2, -5, 10, 7]"
-p "[arr.first] + arr[1...-1].map { |element| if element.even? then element + arr.first else element end } + [arr.last]"
+p "[arr.first] + arr[1...-1].map { |element| element.even? ? element + arr.first : element } + [arr.last]"
 arr = [185, -5, 7, -2, 88, -2, -2, -5, 10, 7]
-p [arr.first] + arr[1...-1].map { |element| if element.even? then element + arr.first else element end } + [arr.last]
+p [arr.first] + arr[1...-1].map { |element| element.even? ? element + arr.first : element } + [arr.last]
 p'------------------------'
 
 p "40. Дан целочисленный массив. Преобразовать его, прибавив к четным числам последний элемент. Первый и последний элементы массива не изменять."

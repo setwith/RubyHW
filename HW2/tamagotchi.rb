@@ -24,13 +24,6 @@ class Pet
     passageOfTime
   end
 
-  def sleep
-    puts 'Немножко вздримну и снова будем покорять мир!'
-    @enegry += 30
-    @health += 10
-    passageOfTime
-  end
-
   def fit
     puts 'Вот это упражнение делай - спина не будет болеть. Технике' + @name + 'позавидовал бы сам Сталоне'
     @workout += 10
@@ -72,6 +65,10 @@ class Pet
     @asleep = false
   end
 
+  def watch
+    passageOfTime
+  end
+
   def info
     puts 'health - ' + @health.to_s
     puts 'happyness -  ' + @happyness.to_s
@@ -92,8 +89,9 @@ class Pet
     puts 'Нажмите 8 чтобы подбросить'
     puts 'Нажмите 9 чтобы уложить спать'
     puts 'Нажмите 10 чтобы разбудить'
-    puts "Нажмите на 11 чтобы оценить состояние #{@name}"
-    puts 'Нажмите на 12 чтобы посмотреть все команды'
+    puts "Нажмите на 11 чтобы оценить состояние своего питомца"
+    puts "Нажмите на 12 чтобы посмотреть на своего питомца (что-то может произойти)"
+    puts 'Нажмите на 13 чтобы посмотреть все команды'
   end
 
   private
@@ -102,13 +100,18 @@ class Pet
     if @stuffInBelly > 0
       @stuffInBelly -= 5
       @health -= 5
-      @happyness -= 5
-      @workout -= 5
-      @party -= 5
-    elsif @asleep
-      @asleep = false
-      @stuffInBelly -= 5
+      @happyness -= rand(5..10)
+      @workout -= rand(5..10)
+      @party -= rand(5..10)
     end
+
+    hp_need
+    happy_need
+    move_need
+    workout_need
+    party_need
+    party_need
+    death
   end
 
   def hp_need
@@ -138,10 +141,13 @@ class Pet
   def death
     if @stuffInBelly == 0
       puts @name + ' ушел к другому. К тому, кто будет его кормить'
+      exit
     elsif @health == 0
       puts @name + ' ушел и больше не вернеться :('
+      exit
     elsif @enegry == 0
       puts @name + ' обезсилен уполз к другому'
+      exit
     end
   end
 end
@@ -160,8 +166,9 @@ puts 'Нажмите 7 чтобы покупать'
 puts 'Нажмите 8 чтобы подбросить'
 puts 'Нажмите 9 чтобы уложить спать'
 puts 'Нажмите 10 чтобы разбудить'
-puts "Нажмите на 11 чтобы оценить состояние #{@name}"
-puts 'Нажмите на 12 чтобы посмотреть все команды'
+puts "Нажмите на 11 чтобы оценить состояние своего питомца"
+puts "Нажмите на 12 чтобы посмотреть на своего питомца (что-то может произойти)"
+puts 'Нажмите на 13 чтобы посмотреть все команды'
 
 command = gets.chomp
 until command == 'exit'
@@ -189,9 +196,11 @@ until command == 'exit'
   when '11'
     pet.info
   when '12'
+    pet.watch
+  when '13'
     pet.comntrol
   else
-    puts 'Выберите команду от 1 до 12. Нажмите 12, чтобы посмотреть возможные команды'
+    puts 'Выберите команду от 1 до 13. Нажмите 13, чтобы посмотреть возможные команды'
   end
   command = gets.chomp
 end

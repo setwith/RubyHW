@@ -16,12 +16,16 @@ class Pet
     puts 'Вы играети с ' + @name + '. Какова милота ^_^'
     @happyness += 10
     passageOfTime
+    info
+    comntrol
   end
 
   def eat
     puts 'Не то чтобы по вкусу вкусно, но по сути вкусно. Спасибо :)'
     @stuffInBelly += 10
     passageOfTime
+    info
+    comntrol
   end
 
   def fit
@@ -29,6 +33,8 @@ class Pet
     @workout += 10
     @enegry -= 20
     passageOfTime
+    info
+    comntrol
   end
 
   def adventure
@@ -36,46 +42,62 @@ class Pet
     @party += 10
     @happyness += 10
     passageOfTime
+    info
+    comntrol
   end
 
   def talk
     puts 'Хмм.. а ты знал, что только утки умеют крякать: самцы этой способности лишены?'
+    info
+    comntrol
   end
 
   def bath
     puts 'И все же быть чистым намного круче'
     @health += 10
     passageOfTime
+    info
+    comntrol
   end
 
   def toss
     puts 'Вы подбрасываете ' + @name + ' в воздух.'
     @happyness += 10
     passageOfTime
+    info
+    comntrol
   end
 
   def put_to_bed
     puts 'Вы укладываете ' + @name + ' спать.'
     @asleep = true
     @health += 20
+    info
+    comntrol
   end
 
   def wake_up
     puts @name + ' проснулся и сладко зевает.'
     @asleep = false
+    info
+    comntrol
   end
 
   def watch
     passageOfTime
+    info
+    comntrol
   end
 
   def info
+    puts '-----------------------'
     puts 'health - ' + @health.to_s
     puts 'happyness -  ' + @happyness.to_s
     puts 'stuffInBelly - ' + @stuffInBelly.to_s
     puts 'energy - ' + @enegry.to_s
     puts 'workout - ' + @workout.to_s
     puts 'party - ' + @party.to_s
+    puts '-----------------------'
   end
 
   def comntrol

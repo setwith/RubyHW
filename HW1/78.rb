@@ -1,2 +1,2 @@
 p 'Дано целое число. Найти произведение его цифр.'
-p 'x.to_s.split('').map(&:to_i).reduce(:*)' 
+p 'x.to_s.split('').map(&:to_i).reduce(:*)'

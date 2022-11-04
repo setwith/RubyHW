@@ -140,15 +140,22 @@ class Pet
     check_energy
 
     GetHtml.get(content, bypass_html: true)
+    @emoji = '&#128567;' if @health < 5
+    @emoji = '&#128511;' if @happyness < 5
+    @emoji = '&#128528;' if @stuff_in_belly < 5
+    @emoji = '&#128565;' if @workout < 5
+    @emoji = '&#128128;' if @energy < 5
   end
 
+  # TODO: style
   def content
     <<~HTML
-      <p>здоров'я = #{@health} &#128567;</p>
+      <>здоров'я = #{@health} &#128567;</p>
       <p>рівень щастя = #{@happyness} &#128123;</p>
       <p>відчуття ситості = #{@stuff_in_belly} &#129316;</p>
       <p>тренування = #{@workout} &#128170;</p>
       <p>енергія = #{@energy} &#128165;</p>
+      <span style=font-size:100px>#{@emoji}</span>
     HTML
   end
 

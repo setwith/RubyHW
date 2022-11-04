@@ -144,11 +144,11 @@ class Pet
 
   def content
     <<~HTML
-      <p>здоров'я = #{@health}</p>
-      <p>рівень щастя = #{@happyness}</p>
-      <p>відчуття ситості = #{@stuff_in_belly}</p>
-      <p>тренування = #{@workout}</p>
-      <p>здоров'я = #{@energy}</p>
+      <p>здоров'я = #{@health} &#128567;</p>
+      <p>рівень щастя = #{@happyness} &#128123;</p>
+      <p>відчуття ситості = #{@stuff_in_belly} &#129316;</p>
+      <p>тренування = #{@workout} &#128170;</p>
+      <p>енергія = #{@energy} &#128165;</p>
     HTML
   end
 

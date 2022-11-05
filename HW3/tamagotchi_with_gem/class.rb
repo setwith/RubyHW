@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.require
+
 class Pet
   def initialize(name)
     @name = name
@@ -150,7 +153,7 @@ class Pet
   # TODO: style
   def content
     <<~HTML
-      <>здоров'я = #{@health} &#128567;</p>
+      <p>здоров'я = #{@health} &#128567;</p>
       <p>рівень щастя = #{@happyness} &#128123;</p>
       <p>відчуття ситості = #{@stuff_in_belly} &#129316;</p>
       <p>тренування = #{@workout} &#128170;</p>

@@ -7,6 +7,7 @@ Console game where you need to look after your pet. You have to play, feed, hug,
 To get started with the app just:
 
 - clone the repo
+- run _`gem install bundler`_
 - run _`bundle`_
 - run file _`game.rb`_
 - follow the instruction

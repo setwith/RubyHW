@@ -1,61 +1,61 @@
 class Pet
   def initialize(name)
-    @name = name
+    @name = name.capitalize
     @health = 20
-    @happyness = 20
+    @happiness = 20
     @stuff_in_belly = 20
-    @asllep = false
+    @asleep = false
     @workout = 20
     @energy = 20
 
-    puts "Хей, мене звати #{@name.capitalize}, і тепер я планую любити тебе та проводити багато часу разом. Давай пошвидше знайдемо заняття для нас!)"
+    puts "Хей, мене звати #{@name}, і тепер я планую любити тебе та проводити багато часу разом. Давай пошвидше знайдемо заняття для нас!)"
   end
 
   def feed
-    puts "Ви годуєте #{@name.capitalize}. Йой, так їсть, аж за вухами лящить."
+    puts "Ви годуєте #{@name}. Йой, так їсть, аж за вухами лящить."
     @stuff_in_belly = 10
     @energy += 3
-    passageOfTime
+    pass_time
     info
   end
 
   def walk
-    puts "Хороша ідея була прогулятись. #{@name.capitalize} махає своїм хвостом та обнюхує кожного зустрічного :)"
-    @happyness += 4
+    puts "Хороша ідея була прогулятись. #{@name} махає своїм хвостом та обнюхує кожного зустрічного :)"
+    @happiness += 4
     @energy -= 1
     @stuff_in_belly -= 1
-    passageOfTime
+    pass_time
     info
   end
 
   def put_to_bed
-    puts "І все ж таки, який гарний #{@name.capitalize}, коли спить... І мовчить :D"
-    @asllep = true
+    puts "І все ж таки, який гарний #{@name}, коли спить... І мовчить :D"
+    @asleep = true
     @energy += 10
     @health += 5
-    puts "#{@name.capitalize} солодко хропить"
+    puts "#{@name} солодко хропить"
     3.times do
       puts 'Hzz..'
     end
-    puts "#{@name.capitalize} повільно прокидається"
-    @asllep = false
-    passageOfTime
+    puts "#{@name} повільно прокидається"
+    @asleep = false
+    pass_time
     info
   end
 
   def toss
-    puts "Ти підкидаєш #{@name.capitalize} в повітря. Його улюблене дозвілля, звісно, не враховуючи коли ти йому чухаєш спинку"
-    @happyness += 3
-    passageOfTime
+    puts "Ти підкидаєш #{@name} в повітря. Його улюблене дозвілля, звісно, не враховуючи коли ти йому чухаєш спинку"
+    @happiness += 3
+    pass_time
     info
   end
 
   def gym
-    puts "От цю вправу роби - спина боліти не буде. Техніці #{@name.capitalize} позаздрив би сам Арнольд!"
+    puts "От цю вправу роби - спина боліти не буде. Техніці #{@name} позаздрив би сам Арнольд!"
     @workout += 10
     @energy -= 2
-    @happyness += 2
-    passageOfTime
+    @happiness += 2
+    pass_time
     info
   end
 
@@ -68,47 +68,47 @@ class Pet
       'А ти знав, що на шоломах астронавтів є спеціальний пристрій, щоб чухати носа?',
       'А ти знав, що якби до Coca-Cola не додавали барвник, вона була б зеленого кольору?'
     ]
-    puts phrases.sample + 'Так, знаю, міг би поступити в Гарвард :D'
-    passageOfTime
+    puts "#{phrases.sample} 'Так, знаю, міг би поступити в Гарвард :D"
+    pass_time
     info
   end
 
   def hug
-    puts "Ви обіймаєте #{@name.capitalize}. Ну шо за краса?)"
-    @happyness += 3
-    passageOfTime
+    puts "Ви обіймаєте #{@name}. Ну шо за краса?)"
+    @happiness += 3
+    pass_time
     info
   end
 
   def wash
-    puts "Хороше рішення було - помити #{@name.capitalize}. Тепер пахне так, що і сусіди позбігаються , як дівчата в рекламі AXE!"
+    puts "Хороше рішення було - помити #{@name}. Тепер пахне так, що і сусіди позбігаються , як дівчата в рекламі AXE!"
     @health += 3
-    passageOfTime
+    pass_time
     info
   end
 
   def treat
     puts 'Дякую тобі. Я думав, шо вже всьо... Фініта ля комедія'
     @health += 10
-    passageOfTime
+    pass_time
   end
 
   def watch
-    @happyness -= rand(3)
+    @happiness -= rand(3)
     @stuff_in_belly -= rand(3)
     @workout -= rand(3)
     @energy -= rand(3)
-    passageOfTime
+    pass_time
     info
   end
 
   def info
     puts '________________'
-    puts 'здоров\'я = ' + @health.to_s
-    puts 'рівень щастя = ' + @happyness.to_s
-    puts 'відчуття ситості = ' + @stuff_in_belly.to_s
-    puts 'тренування = ' + @workout.to_s
-    puts 'енергія = ' + @energy.to_s
+    puts "здоров'я = #{@health}"
+    puts "рівень щастя = #{@happyness}"
+    puts "відчуття ситості = #{@stuff_in_belly}"
+    puts "тренування = #{@workout}"
+    puts "енергія = #{@energy}"
   end
 
   def control
@@ -121,21 +121,21 @@ class Pet
     puts 'Натисніть 7, щоб обійняти'
     puts 'Натисніть 8, щоб помити'
     puts 'Натисніть 9, щоб лікувати'
-    puts "Натисніть 10, щоб спостерігати за #{@name.capitalize}"
+    puts "Натисніть 10, щоб спостерігати за #{@name}"
     puts 'Натисніть 11, щоб подивитись всі команди'
   end
 
   private
 
-  def passageOfTime
+  def pass_time
     @health -= 1
     check_health
-    @happyness -= 1
-    check_happyness
+    @happiness -= 1
+    check_happiness
     @stuff_in_belly -= 1
     check_stuff_in_belly
     @workout -= 1
-    check_worckout
+    check_workout
     @energy -= 1
     check_energy
   end
@@ -143,25 +143,25 @@ class Pet
   def check_health
     if @health <= 5 && @health >= 3
       puts '________________'
-      puts "#{@name.capitalize} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть \'сон лікує\'"
+      puts "#{@name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть \'сон лікує\'"
     elsif @health <= 2 && @health >= 1
       puts '________________'
-      puts "#{@name.capitalize} на межі. Швидше біжи лікувати!"
+      puts "#{@name} на межі. Швидше біжи лікувати!"
     elsif @health == 0
       puts '________________'
-      puts "#{@name.capitalize} всьо... А славний був малий :("
+      puts "#{@name} всьо... А славний був малий :("
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб всі вціліли'
       exit
     end
   end
 
-  def check_happyness
-    if @happyness <= 10
+  def check_happiness
+    if @happiness <= 10
       puts '________________'
-      puts "#{@name.capitalize} нудиться. Потрібно чимось зайняти його!"
-    elsif @happyness == 0
+      puts "#{@name} нудиться. Потрібно чимось зайняти його!"
+    elsif @happiness == 0
       puts '________________'
-      puts "#{@name.capitalize} всьо... І то все від нульги :("
+      puts "#{@name} всьо... І то все від нульги :("
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб всі вціліли'
       exit
     end
@@ -170,25 +170,25 @@ class Pet
   def check_stuff_in_belly
     if @stuff_in_belly <= 10 && @stuff_in_belly >= 8
       puts '________________'
-      puts "#{@name.capitalize} зголоднів. Покорми свого улюбленця"
+      puts "#{@name} зголоднів. Покорми свого улюбленця"
     elsif @stuff_in_belly <= 7 && @stuff_in_belly >= 1
       puts '________________'
-      puts "#{@name.capitalize} на межі. Не гай ні секунди покорми свого улюбленця!"
+      puts "#{@name} на межі. Не гай ні секунди покорми свого улюбленця!"
     elsif @stuff_in_belly == 0
       puts '________________'
-      puts "Всьо... Тебе захавали. От шо трапляється, коли не кормити своїх улюбленців."
+      puts 'Всьо... Тебе захавали. От шо трапляється, коли не кормити своїх улюбленців.'
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб всі вціліли'
       exit
     end
   end
 
-  def check_worckout
+  def check_workout
     if @workout <= 10 && @workout >= 1
       puts '________________'
-      puts "#{@name.capitalize} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
+      puts "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
     elsif @workout == 0
       puts '________________'
-      puts "#{@name.capitalize} пішов до іншого. До того, хто буде займатись з ним спортами!"
+      puts "#{@name} пішов до іншого. До того, хто буде займатись з ним спортами!"
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб ніхто не втік.'
       exit
     end
@@ -197,13 +197,13 @@ class Pet
   def check_energy
     if @energy <= 10 && @energy >= 8
       puts '________________'
-      puts "#{@name.capitalize} стомився. Йому необхіден сон, уклади його спати."
+      puts "#{@name} стомився. Йому необхіден сон, уклади його спати."
     elsif @energy <= 7 && @energy >= 1
       puts '________________'
-      puts "#{@name.capitalize} вирубається на ходу. Йому необхідена енергія, уклади його спати."
+      puts "#{@name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
     elsif @energy == 0
       puts '________________'
-      puts "#{@name.capitalize} всьо... Сіли батарейки :("
+      puts "#{@name} всьо... Сіли батарейки :("
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб всі вціліли'
       exit
     end

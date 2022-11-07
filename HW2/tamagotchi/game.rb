@@ -1,4 +1,4 @@
-require_relative 'class'
+require_relative 'pet'
 
 puts 'Вітаю тебе в Тамагочі написаному на Ruby ;)'
 puts 'Як назвемо твого улюбленця?'

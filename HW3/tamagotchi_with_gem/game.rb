@@ -1,4 +1,4 @@
-require_relative 'class'
+require_relative 'pet'
 require 'html_ina'
 
 puts 'Вітаю тебе в Тамагочі написаному на Ruby ;)'

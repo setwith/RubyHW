@@ -5,9 +5,9 @@ class Pet
   def initialize(name)
     @name = name.capitalize
     @health = 20
-    @happyness = 20
+    @happiness = 20
     @stuff_in_belly = 20
-    @asllep = false
+    @asleep = false
     @workout = 20
     @energy = 20
 
@@ -24,7 +24,7 @@ class Pet
 
   def walk
     puts "Хороша ідея була прогулятись. #{@name} махає своїм хвостом та обнюхує кожного зустрічного :)"
-    @happyness += 4
+    @happiness += 4
     @energy -= 1
     @stuff_in_belly -= 1
     pass_time
@@ -33,7 +33,7 @@ class Pet
 
   def put_to_bed
     puts "І все ж таки, який гарний #{@name}, коли спить... І мовчить :D"
-    @asllep = true
+    @asleep = true
     @energy += 10
     @health += 5
     puts "#{@name} солодко хропить"
@@ -41,14 +41,14 @@ class Pet
       puts 'Hzz..'
     end
     puts "#{@name} повільно прокидається"
-    @asllep = false
+    @asleep = false
     pass_time
     info
   end
 
   def toss
     puts "Ти підкидаєш #{@name} в повітря. Його улюблене дозвілля, звісно, не враховуючи коли ти йому чухаєш спинку"
-    @happyness += 3
+    @happiness += 3
     pass_time
     info
   end
@@ -57,7 +57,7 @@ class Pet
     puts "От цю вправу роби - спина боліти не буде. Техніці #{@name} позаздрив би сам Арнольд!"
     @workout += 10
     @energy -= 2
-    @happyness += 2
+    @happiness += 2
     pass_time
     info
   end
@@ -71,14 +71,14 @@ class Pet
       'А ти знав, що на шоломах астронавтів є спеціальний пристрій, щоб чухати носа?',
       'А ти знав, що якби до Coca-Cola не додавали барвник, вона була б зеленого кольору?'
     ]
-    puts phrases.sample + 'Так, знаю, міг би поступити в Гарвард :D'
+    puts "#{phrases.sample} 'Так, знаю, міг би поступити в Гарвард :D"
     pass_time
     info
   end
 
   def hug
     puts "Ви обіймаєте #{@name}. Ну шо за краса?)"
-    @happyness += 3
+    @happiness += 3
     pass_time
     info
   end
@@ -97,7 +97,7 @@ class Pet
   end
 
   def watch
-    @happyness -= rand(3)
+    @happiness -= rand(3)
     @stuff_in_belly -= rand(3)
     @workout -= rand(3)
     @energy -= rand(3)
@@ -107,8 +107,8 @@ class Pet
 
   def info
     puts '________________'
-    puts "здоров\'я = #{@health}"
-    puts "рівень щастя = #{@happyness}"
+    puts "здоров'я = #{@health}"
+    puts "рівень щастя = #{@happiness}"
     puts "відчуття ситості = #{@stuff_in_belly}"
     puts "тренування = #{@workout}"
     puts "енергія = #{@energy}"
@@ -133,18 +133,18 @@ class Pet
   def pass_time
     @health -= 1
     check_health
-    @happyness -= 1
-    check_happyness
+    @happiness -= 1
+    check_happiness
     @stuff_in_belly -= 1
     check_stuff_in_belly
     @workout -= 1
-    check_worckout
+    check_workout
     @energy -= 1
     check_energy
 
     GetHtml.get(content, bypass_html: true)
     @emoji = '&#128567;' if @health < 5
-    @emoji = '&#128511;' if @happyness < 5
+    @emoji = '&#128511;' if @happiness < 5
     @emoji = '&#128528;' if @stuff_in_belly < 5
     @emoji = '&#128565;' if @workout < 5
     @emoji = '&#128128;' if @energy < 5
@@ -154,7 +154,7 @@ class Pet
   def content
     <<~HTML
       <p>здоров'я = #{@health} &#128567;</p>
-      <p>рівень щастя = #{@happyness} &#128123;</p>
+      <p>рівень щастя = #{@happiness} &#128123;</p>
       <p>відчуття ситості = #{@stuff_in_belly} &#129316;</p>
       <p>тренування = #{@workout} &#128170;</p>
       <p>енергія = #{@energy} &#128165;</p>
@@ -177,11 +177,11 @@ class Pet
     end
   end
 
-  def check_happyness
-    if @happyness <= 10
+  def check_happiness
+    if @happiness <= 10
       puts '________________'
       puts "#{@name} нудиться. Потрібно чимось зайняти його!"
-    elsif @happyness.zero?
+    elsif @happiness.zero?
       puts '________________'
       puts "#{@name} всьо... І то все від нульги :("
       puts 'Спробуй зіграти ще раз. Але постарайся, щоб всі вціліли'
@@ -204,7 +204,7 @@ class Pet
     end
   end
 
-  def check_worckout
+  def check_workout
     if @workout <= 10 && @workout >= 1
       puts '________________'
       puts "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."

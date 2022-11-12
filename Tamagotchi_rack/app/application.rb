@@ -86,6 +86,9 @@ class Application
 
       @pet.watch
       rack_response('game.html.erb')
+
+    when '/game_over'
+      rack_response('game_over.html.erb')
     end
   end
 

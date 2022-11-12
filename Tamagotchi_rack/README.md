@@ -11,6 +11,7 @@ To get started with the app just:
 - run _`bundle`_
 - run _`rackup`_
 - open _`http://[::1]:9292`_
+- log in _`(user = user; password = goodpassword)`_
 - have fun :)
 
 ## Technologies

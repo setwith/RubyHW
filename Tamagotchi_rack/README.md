@@ -10,8 +10,10 @@ To get started with the app just:
 - run _`gem install bundler`_
 - run _`bundle`_
 - run _`rackup`_
-- open _`http://[::1]:9292`_
-- log in _`(user = user; password = goodpassword)`_
+- open http://localhost:9292
+- login with:<br />
+  name: user<br />
+  password: goodpassword
 - have fun :)
 
 ## Technologies

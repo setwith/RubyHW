@@ -3,8 +3,7 @@ require_relative 'pet'
 
 class Application
   attr_reader :request, :path
-
-  # attr_accessor :pet
+  attr_accessor :pet
 
   def call(env)
     @request = Rack::Request.new(env)

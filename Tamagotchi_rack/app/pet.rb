@@ -110,17 +110,11 @@ class Pet
       @status = "#{@name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть \'сон лікує\'"
     elsif @health <= 2 && @health >= 1
       @status = "#{@name} на межі. Швидше біжи лікувати!"
-    elsif @health <= 0
-      @status = "#{@name} всьо... А славний був малий :("
     end
   end
 
   def check_happiness
-    if @happiness <= 10
-      @status = "#{@name} нудиться. Потрібно чимось зайняти його!"
-    elsif @happiness <= 0
-      @status = "#{@name} всьо... І то все від нульги :("
-    end
+    @status = "#{@name} нудиться. Потрібно чимось зайняти його!" if @happiness <= 10
   end
 
   def check_stuff_in_belly
@@ -128,16 +122,12 @@ class Pet
       @status = "#{@name} зголоднів. Покорми свого улюбленця"
     elsif @stuff_in_belly <= 7 && @stuff_in_belly >= 1
       @status = "#{@name} на межі. Не гай ні секунди покорми свого улюбленця!"
-    elsif @stuff_in_belly <= 0
-      @status = 'Всьо... Тебе захавали. От шо трапляється, коли не кормити своїх улюбленців.'
     end
   end
 
   def check_workout
     if @workout <= 10 && @workout >= 1
       @status = "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
-    elsif @workout <= 0
-      @status = "#{@name} пішов до іншого. До того, хто буде займатись з ним спортами!"
     end
   end
 
@@ -146,8 +136,6 @@ class Pet
       @status = "#{@name} стомився. Йому необхіден сон, уклади його спати."
     elsif @energy <= 7 && @energy >= 1
       @status = "#{@name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
-    elsif @energy <= 0
-      @status = "#{@name} всьо... Сіли батарейки :("
     end
   end
 end

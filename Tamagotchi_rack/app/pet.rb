@@ -106,36 +106,48 @@ class Pet
   end
 
   def check_health
-    if @health <= 5 && @health >= 3
-      @status = "#{@name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть \'сон лікує\'"
-    elsif @health <= 2 && @health >= 1
-      @status = "#{@name} на межі. Швидше біжи лікувати!"
-    end
+    @status = if @health <= 5 && @health >= 3
+                "#{@name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть \'сон лікує\'"
+              elsif @health <= 2 && @health >= 1
+                "#{@name} на межі. Швидше біжи лікувати!"
+              else
+                ''
+              end
   end
 
   def check_happiness
-    @status = "#{@name} нудиться. Потрібно чимось зайняти його!" if @happiness <= 10
+    @status = if @happiness <= 10
+                "#{@name} нудиться. Потрібно чимось зайняти його!"
+              else
+                ''
+              end
   end
 
   def check_stuff_in_belly
-    if @stuff_in_belly <= 10 && @stuff_in_belly >= 8
-      @status = "#{@name} зголоднів. Покорми свого улюбленця"
-    elsif @stuff_in_belly <= 7 && @stuff_in_belly >= 1
-      @status = "#{@name} на межі. Не гай ні секунди покорми свого улюбленця!"
-    end
+    @status = if @stuff_in_belly <= 10 && @stuff_in_belly >= 8
+                "#{@name} зголоднів. Покорми свого улюбленця"
+              elsif @stuff_in_belly <= 7 && @stuff_in_belly >= 1
+                "#{@name} на межі. Не гай ні секунди покорми свого улюбленця!"
+              else
+                ''
+              end
   end
 
   def check_workout
-    if @workout <= 10 && @workout >= 1
-      @status = "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
-    end
+    @status = if @workout <= 10 && @workout >= 1
+                "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
+              else
+                ''
+              end
   end
 
   def check_energy
-    if @energy <= 10 && @energy >= 8
-      @status = "#{@name} стомився. Йому необхіден сон, уклади його спати."
-    elsif @energy <= 7 && @energy >= 1
-      @status = "#{@name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
-    end
+    @status = if @energy <= 10 && @energy >= 8
+                "#{@name} стомився. Йому необхіден сон, уклади його спати."
+              elsif @energy <= 7 && @energy >= 1
+                "#{@name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
+              else
+                ''
+              end
   end
 end

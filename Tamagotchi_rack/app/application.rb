@@ -29,7 +29,7 @@ class Application
     when '/feed'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.feed
         rack_response('game.html.erb')
       else
@@ -39,7 +39,7 @@ class Application
     when '/walk'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.walk
         rack_response('game.html.erb')
       else
@@ -49,7 +49,7 @@ class Application
     when '/put_to_bed'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.put_to_bed
         rack_response('game.html.erb')
       else
@@ -59,7 +59,7 @@ class Application
     when '/toss'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.toss
         rack_response('game.html.erb')
       else
@@ -68,7 +68,7 @@ class Application
     when '/gym'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.gym
         rack_response('game.html.erb')
       else
@@ -78,7 +78,7 @@ class Application
     when '/talk'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.talk
         rack_response('game.html.erb')
       else
@@ -88,7 +88,7 @@ class Application
     when '/hug'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.hug
         rack_response('game.html.erb')
       else
@@ -98,7 +98,7 @@ class Application
     when '/wash'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.wash
         rack_response('game.html.erb')
       else
@@ -108,7 +108,7 @@ class Application
     when '/treat'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.treat
         rack_response('game.html.erb')
       else
@@ -118,7 +118,7 @@ class Application
     when '/watch'
       return rack_response_redirect if @pet.nil?
 
-      if @pet.health > 0 && @pet.happiness > 0 && @pet.stuff_in_belly > 0 && @pet.workout > 0 && @pet.energy > 0
+      if check
         @pet.watch
         rack_response('game.html.erb')
       else
@@ -129,6 +129,10 @@ class Application
       @pet = nil
       rack_response('game_over.html.erb')
     end
+  end
+
+  def check
+    @pet.health > 1 && @pet.happiness > 1 && @pet.stuff_in_belly > 1 && @pet.workout > 1 && @pet.energy > 1
   end
 
   def rack_response(filename)

@@ -1,5 +1,5 @@
 class Pet
-  attr_reader :name, :health, :happiness, :stuff_in_belly, :workout, :energy, :text, :status
+  attr_reader :name, :health, :happiness, :stuff_in_belly, :workout, :energy, :status, :text
 
   PHRASES = [
     'А ти знав, що на нашій шкірі може жити більше живих організмів, ніж людей на всій планеті?',
@@ -21,14 +21,14 @@ class Pet
   end
 
   def feed
-    @text = "Ви годуєте #{@name}. Йой, так їсть, аж за вухами лящить."
+    @text = "Ви годуєте #{name}. Йой, так їсть, аж за вухами лящить."
     @stuff_in_belly = 20
     @energy += 3
     pass_time
   end
 
   def walk
-    @text = "Хороша ідея була прогулятись. #{@name} махає своїм хвостом та обнюхує кожного зустрічного :)"
+    @text = "Хороша ідея була прогулятись. #{name} махає своїм хвостом та обнюхує кожного зустрічного :)"
     @happiness += 4
     @energy -= 1
     @stuff_in_belly -= 1
@@ -36,7 +36,7 @@ class Pet
   end
 
   def put_to_bed
-    @text = "І все ж таки, який гарний #{@name}, коли спить... І мовчить :D"
+    @text = "І все ж таки, який гарний #{name}, коли спить... І мовчить :D"
     @asleep = true
     @energy += 10
     @health += 5
@@ -45,13 +45,13 @@ class Pet
   end
 
   def toss
-    @text = "Ти підкидаєш #{@name} в повітря. Його улюблене дозвілля, звісно, не враховуючи коли ти йому чухаєш спинку"
+    @text = "Ти підкидаєш #{name} в повітря. Його улюблене дозвілля, звісно, не враховуючи коли ти йому чухаєш спинку"
     @happiness += 3
     pass_time
   end
 
   def gym
-    @text = "От цю вправу роби - спина боліти не буде. Техніці #{@name} позаздрив би сам Арнольд!"
+    @text = "От цю вправу роби - спина боліти не буде. Техніці #{name} позаздрив би сам Арнольд!"
     @workout += 10
     @energy -= 2
     @happiness += 2
@@ -64,13 +64,13 @@ class Pet
   end
 
   def hug
-    @text = "Ти обіймаєш #{@name}. Ну шо за краса?)"
+    @text = "Ти обіймаєш #{name}. Ну шо за краса?)"
     @happiness += 3
     pass_time
   end
 
   def wash
-    @text = "Хороше рішення було - помити #{@name}. Тепер пахне так, що і сусіди позбігаються , як дівчата в рекламі AXE!"
+    @text = "Хороше рішення було - помити #{name}. Тепер пахне так, що і сусіди позбігаються , як дівчата в рекламі AXE!"
     @health += 3
     pass_time
   end
@@ -82,7 +82,7 @@ class Pet
   end
 
   def watch
-    @text = "Ти спостерігаєш за #{@name}. А він за тобою. Але не забувай спостерігати за показниками свого улюбленця."
+    @text = "Ти спостерігаєш за #{name}. А він за тобою. Але не забувай спостерігати за показниками свого улюбленця."
     @happiness -= rand(3)
     @stuff_in_belly -= rand(3)
     @workout -= rand(3)
@@ -106,46 +106,46 @@ class Pet
   end
 
   def check_health
-    @status = if @health <= 5 && @health >= 3
-                "#{@name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть - сон лікує'"
-              elsif @health <= 2 && @health >= 1
-                "#{@name} на межі. Швидше біжи лікувати!"
+    @status = if health <= 5 && health >= 3
+                "#{name} захворів. Його терміново потрібно лікувати, покупати або вкласти спати. Як кажуть - сон лікує'"
+              elsif health <= 2 && health >= 1
+                "#{name} на межі. Швидше біжи лікувати!"
               else
                 ''
               end
   end
 
   def check_happiness
-    @status = if @happiness <= 10
-                "#{@name} нудиться. Потрібно чимось зайняти його!"
+    @status = if happiness <= 10
+                "#{name} нудиться. Потрібно чимось зайняти його!"
               else
                 ''
               end
   end
 
   def check_stuff_in_belly
-    @status = if @stuff_in_belly <= 10 && @stuff_in_belly >= 8
-                "#{@name} зголоднів. Покорми свого улюбленця"
-              elsif @stuff_in_belly <= 7 && @stuff_in_belly >= 1
-                "#{@name} на межі. Не гай ні секунди покорми свого улюбленця!"
+    @status = if stuff_in_belly <= 10 && stuff_in_belly >= 8
+                "#{name} зголоднів. Покорми свого улюбленця"
+              elsif stuff_in_belly <= 7 && stuff_in_belly >= 1
+                "#{name} на межі. Не гай ні секунди покорми свого улюбленця!"
               else
                 ''
               end
   end
 
   def check_workout
-    @status = if @workout <= 10 && @workout >= 1
-                "#{@name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
+    @status = if workout <= 10 && workout >= 1
+                "#{name} хоче тренуватись. Активність - його все, проведи його до залу для тренування."
               else
                 ''
               end
   end
 
   def check_energy
-    @status = if @energy <= 10 && @energy >= 8
-                "#{@name} стомився. Йому необхіден сон, уклади його спати."
-              elsif @energy <= 7 && @energy >= 1
-                "#{@name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
+    @status = if energy <= 10 && energy >= 8
+                "#{name} стомився. Йому необхіден сон, уклади його спати."
+              elsif energy <= 7 && energy >= 1
+                "#{name} вирубається на ходу. Йому необхідена енергія, уклади його спати."
               else
                 ''
               end

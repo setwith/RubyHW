@@ -29,7 +29,7 @@ class Application
     when '/feed'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.feed
         rack_response('game.html.erb')
       else
@@ -39,7 +39,7 @@ class Application
     when '/walk'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.walk
         rack_response('game.html.erb')
       else
@@ -49,7 +49,7 @@ class Application
     when '/put_to_bed'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.put_to_bed
         rack_response('game.html.erb')
       else
@@ -59,7 +59,7 @@ class Application
     when '/toss'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.toss
         rack_response('game.html.erb')
       else
@@ -68,7 +68,7 @@ class Application
     when '/gym'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.gym
         rack_response('game.html.erb')
       else
@@ -78,7 +78,7 @@ class Application
     when '/talk'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.talk
         rack_response('game.html.erb')
       else
@@ -88,7 +88,7 @@ class Application
     when '/hug'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.hug
         rack_response('game.html.erb')
       else
@@ -98,7 +98,7 @@ class Application
     when '/wash'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.wash
         rack_response('game.html.erb')
       else
@@ -108,7 +108,7 @@ class Application
     when '/treat'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.treat
         rack_response('game.html.erb')
       else
@@ -118,7 +118,7 @@ class Application
     when '/watch'
       return rack_response_redirect if @pet.nil?
 
-      if check
+      if pet_alive?
         @pet.watch
         rack_response('game.html.erb')
       else
@@ -131,7 +131,11 @@ class Application
     end
   end
 
-  def check
+  def redirect_to_main
+    rack_response_redirect if @pet.nil?
+  end
+
+  def pet_alive?
     @pet.health > 1 && @pet.happiness > 1 && @pet.stuff_in_belly > 1 && @pet.workout > 1 && @pet.energy > 1
   end
 

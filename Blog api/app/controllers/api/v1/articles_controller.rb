@@ -7,7 +7,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    render json: @article
+    @comments = @article.comments.order(created_at: :desc)
+    render json: @article.to_json(include: :comments)
   end
 
   def create
@@ -21,15 +22,18 @@ class Api::V1::ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      render json: @article
+      render json: @article, status: :ok
     else
       render json: @article.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @article.destroy
-    head :no_content
+    if article.destroy
+      head :no_content
+    else
+      render json: article.errors, status: :unprocessable_entity
+    end
   end
 
   private

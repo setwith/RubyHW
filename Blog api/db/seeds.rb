@@ -24,3 +24,44 @@ Article.create([
                    body: 'Well, this is also text for article'
                  }
                ])
+
+Author.create([
+                {
+                  name: 'John',
+                },
+                {
+                  name: 'Mary',
+                },
+                {
+                  name: 'Peter',
+                }
+              ])
+
+Comment.create([
+                 {
+                   body: 'First comment by John',
+                   author_id: 1
+                   article_id: 1
+                 },
+                 {
+                   body: 'Second comment by John',
+                   author_id: 1
+                   article_id: 1
+                 },
+                 {
+                   body: 'First comment by Mary',
+                   author_id: 2
+                   article_id: 1
+                 },
+                 {
+                   body: 'Fourth comment by Peter',
+                   author_id: 3
+                   article_id: 1
+                 },
+                 {
+                   body: 'Second comment by Mary',
+                   author_id: 2
+                   article_id: 1
+                 }
+              ])
+

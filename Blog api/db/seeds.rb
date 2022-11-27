@@ -27,41 +27,40 @@ Article.create([
 
 Author.create([
                 {
-                  name: 'John',
+                  name: 'John'
                 },
                 {
-                  name: 'Mary',
+                  name: 'Mary'
                 },
                 {
-                  name: 'Peter',
+                  name: 'Peter'
                 }
               ])
 
 Comment.create([
                  {
                    body: 'First comment by John',
-                   author_id: 1
+                   author_id: 1,
                    article_id: 1
                  },
                  {
                    body: 'Second comment by John',
-                   author_id: 1
+                   author_id: 1,
                    article_id: 1
                  },
                  {
                    body: 'First comment by Mary',
-                   author_id: 2
+                   author_id: 2,
                    article_id: 1
                  },
                  {
                    body: 'Fourth comment by Peter',
-                   author_id: 3
+                   author_id: 3,
                    article_id: 1
                  },
                  {
                    body: 'Second comment by Mary',
-                   author_id: 2
+                   author_id: 2,
                    article_id: 1
                  }
-              ])
-
+               ])

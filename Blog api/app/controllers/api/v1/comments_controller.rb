@@ -1,4 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
+  before_action :set_article
   before_action :set_comment, only: %i[show update destroy]
 
   def index
@@ -41,7 +42,11 @@ class Api::V1::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+  def set_article
+    @article = Article.find(params[:article_id])
+  end
+
   def comment_params
-    params.require(:comment).permit(:body, :article_id).merge(author_id: current_author.id)
+    params.require(:comment).permit(:body, :status, :article_id, :author_id)
   end
 end

@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   before_action :set_article
-  before_action :set_comment, only: %i[show update destroy]
+  before_action :set_comment, only: %i[show update update_status destroy]
 
   def index
     @comments = Comment.all
@@ -18,6 +18,21 @@ class Api::V1::CommentsController < ApplicationController
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
+  end
+
+  def published
+    @comments = Comment.published
+    render json: @comments
+  end
+
+  def unpublished
+    @comments = Comment.unpublished
+    render json: @comments
+  end
+
+  def update_status
+    @comment.update(status: params[:status])
+    render json: @comment, notice: "Comment updated to #{@comment.status} "
   end
 
   def update

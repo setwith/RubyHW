@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :authors do
-        resources :articles do
-          resources :comments
-          get :published
-          get :unpublished
-          patch :update_status
-        end
+      resources :authors
+      resources :articles do
+        resources :comments
+        get :published_comments
+        get :unpublished_comments
+        patch :update_status
       end
     end
   end

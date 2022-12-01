@@ -63,6 +63,5 @@ class Api::V1::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :status, :article_id, :author_id)
-    # params.fetch(:comment, {})
   end
 end

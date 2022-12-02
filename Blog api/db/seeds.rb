@@ -9,19 +9,23 @@
 Article.create([
                  {
                    title: 'First article',
-                   body: 'Some text for article'
+                   body: 'Some text for article',
+                   author_id: 1
                  },
                  {
                    title: 'Second one',
-                   body: 'Some more text for article'
+                   body: 'Some more text for article',
+                   author_id: 2
                  },
                  {
                    title: 'One more article',
-                   body: 'Again, another text for article'
+                   body: 'Again, another text for article',
+                   author_id: 3
                  },
                  {
-                   title: 'Fourths article',
-                   body: 'Well, this is also text for article'
+                   title: 'Second article bi first author',
+                   body: 'Well, this is also text for article',
+                   author_id: 1
                  }
                ])
 
@@ -30,7 +34,7 @@ Author.create([
                   name: 'John'
                 },
                 {
-                  name: 'Mary'
+                  name: 'Marry'
                 },
                 {
                   name: 'Peter'
@@ -39,27 +43,28 @@ Author.create([
 
 Comment.create([
                  {
-                   body: 'First comment by John',
+                   body: 'TEST COMMEMT John',
                    author_id: 1,
                    article_id: 1
                  },
                  {
-                   body: 'Second comment by John',
+                   body: 'TEST COMMENT John',
                    author_id: 1,
                    article_id: 1
                  },
                  {
-                   body: 'First comment by Mary',
+                   body: 'TEST COMMENT Marry',
                    author_id: 2,
                    article_id: 1
                  },
                  {
-                   body: 'Fourth comment by Peter',
+                   body: 'TEST COMMENT Peter',
                    author_id: 3,
                    article_id: 1
                  },
                  {
-                   body: 'Second comment by Mary',
+                   body: 'TEST COMMENT Marry',
+                   status: 'published',
                    author_id: 2,
                    article_id: 1
                  }

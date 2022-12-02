@@ -3,7 +3,8 @@ class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: %i[show update update_status destroy]
 
   def index
-    @comments = Comment.all
+    # @comments = Comment.all
+    @comments = Comment.where(status: params[:status] || :unpublished)
     render json: @comments
   end
 
@@ -20,12 +21,12 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
-  def published
+  def published_comments
     @comments = Comment.published
     render json: @comments
   end
 
-  def unpublished
+  def unpublished_comments
     @comments = Comment.unpublished
     render json: @comments
   end

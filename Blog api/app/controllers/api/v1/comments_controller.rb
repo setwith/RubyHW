@@ -1,11 +1,11 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :set_article
+  before_action :set_article, only: %i[show update update_status destroy]
   before_action :set_comment, only: %i[show update update_status destroy]
 
   def index
-    # @comments = Comment.all
-    @comments = Comment.where(status: params[:status] || :unpublished)
-    render json: @comments
+    @article = Article.find(params[:article_id])
+    @comments = @article.comments.all
+    render json: @comments, status: :ok
   end
 
   def show
@@ -14,6 +14,8 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.author_id = params[:author_id]
+    @comment.article_id = params[:article_id]
     if @comment.save
       render json: @comment, status: :created
     else
@@ -22,7 +24,8 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def published_comments
-    @comments = Comment.published
+    @author = Author.find(params[:author_id])
+    @comments = @author.comments.published.order(created_at: :desc)
     render json: @comments
   end
 
@@ -63,6 +66,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :status, :article_id, :author_id)
+    params.require(:comment).permit(:body, :status)
   end
 end

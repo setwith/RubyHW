@@ -23,19 +23,9 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
-  def published_comments
-    @author = Author.find(params[:author_id])
-    @comments = @author.comments.published.order(created_at: :desc)
-    render json: @comments
-  end
-
-  def unpublished_comments
-    @comments = Comment.unpublished
-    render json: @comments
-  end
-
   def update_status
-    @comment.update(status: params[:status])
+    new_status = @comment.status == 'unpublished' ? 'published' : 'unpublished'
+    @comment.upddate(status: new_status)
     render json: @comment, notice: "Comment updated to #{@comment.status} "
   end
 

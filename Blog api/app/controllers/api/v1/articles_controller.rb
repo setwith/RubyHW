@@ -8,6 +8,12 @@ class Api::V1::ArticlesController < ApplicationController
     render json: { author: @authors, articles: @articles, comments: @comments }
   end
 
+  def index
+    @author = Author.find(params[:author_id])
+    @articles = @author.articles.all
+    render json: @articles, status: :ok
+  end
+
   def show
     @author = Author.find(params[:author_id])
     @articles = @author.articles.all

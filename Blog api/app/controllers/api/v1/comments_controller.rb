@@ -14,8 +14,8 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.author_id = params[:author_id]
-    @comment.article_id = params[:article_id]
+    # @comment.author_id = params[:author_id]
+    # @comment.article_id = params[:article_id]
     if @comment.save
       render json: @comment, status: :created
     else
@@ -25,7 +25,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def update_status
     new_status = @comment.status == 'unpublished' ? 'published' : 'unpublished'
-    @comment.upddate(status: new_status)
+    @comment.update(status: new_status)
     render json: @comment, notice: "Comment updated to #{@comment.status} "
   end
 
@@ -56,6 +56,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :status)
+    params.require(:comment).permit(:body, :status, :author_id, :article_id)
   end
 end

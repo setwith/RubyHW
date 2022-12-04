@@ -23,7 +23,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.author_id = params[:author_id]
+    # @article.author_id = params[:author_id]
     if @article.save
       render json: @article, status: :created
     else
@@ -40,7 +40,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def destroy
-    if article.destroy
+    if @article.destroy
       head :no_content
     else
       render json: article.errors, status: :unprocessable_entity
@@ -55,6 +55,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :author_id)
   end
 end

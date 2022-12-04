@@ -23,7 +23,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # @article.author_id = params[:author_id]
     if @article.save
       render json: @article, status: :created
     else

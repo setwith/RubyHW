@@ -10,13 +10,13 @@ class Api::V1::AuthorsController < ApplicationController
   end
 
   def published_comments
-    @author = Author.find(params[:id])
+    @author = Author.find(params[:author_id])
     @comments = @author.comments.published.order(created_at: :desc)
     render json: @comments
   end
 
   def unpublished_comments
-    @author = Author.find(params[:id])
+    @author = Author.find(params[:author_id])
     @comments = @author.comments.unpublished.order(created_at: :desc)
     render json: @comments
   end

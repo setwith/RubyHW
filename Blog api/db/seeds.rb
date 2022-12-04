@@ -6,6 +6,18 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Author.create([
+                {
+                  name: 'John'
+                },
+                {
+                  name: 'Marry'
+                },
+                {
+                  name: 'Peter'
+                }
+              ])
+
 Article.create([
                  {
                    title: 'First article',
@@ -28,18 +40,6 @@ Article.create([
                    author_id: 1
                  }
                ])
-
-Author.create([
-                {
-                  name: 'John'
-                },
-                {
-                  name: 'Marry'
-                },
-                {
-                  name: 'Peter'
-                }
-              ])
 
 Comment.create([
                  {

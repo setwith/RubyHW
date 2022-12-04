@@ -14,8 +14,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    # @comment.author_id = params[:author_id]
-    # @comment.article_id = params[:article_id]
     if @comment.save
       render json: @comment, status: :created
     else
@@ -48,7 +46,7 @@ class Api::V1::CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:comment_id])
   end
 
   def set_article

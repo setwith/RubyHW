@@ -1,15 +1,9 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :set_article, only: %i[show update update_status destroy]
-  before_action :set_comment, only: %i[show update update_status destroy]
+  before_action :set_comment, only: %i[update destroy]
 
   def index
-    @article = Article.find(params[:article_id])
-    @comments = @article.comments.all
+    @comments = Comment.all
     render json: @comments, status: :ok
-  end
-
-  def show
-    render json: @comment
   end
 
   def create
@@ -22,6 +16,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update_status
+    @comment = Comment.find(params[:comment_id])
     new_status = @comment.status == 'unpublished' ? 'published' : 'unpublished'
     @comment.update(status: new_status)
     render json: @comment, notice: "Comment updated to #{@comment.status} "
@@ -46,11 +41,7 @@ class Api::V1::CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:comment_id])
-  end
-
-  def set_article
-    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

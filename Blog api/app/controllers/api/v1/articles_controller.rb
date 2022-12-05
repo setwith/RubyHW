@@ -5,20 +5,18 @@ class Api::V1::ArticlesController < ApplicationController
     @authors = Author.all
     @articles = Article.all
     @comments = Comment.all
-    render json: { author: @authors, articles: @articles, comments: @comments }
+    @tags = Tag.all
+    render json: { author: @authors, articles: @articles, comments: @comments, tags: @tags }
   end
 
   def index
-    @author = Author.find(params[:author_id])
-    @articles = @author.articles.all
+    @articles = Article.all
     render json: @articles, status: :ok
   end
 
   def show
-    @author = Author.find(params[:author_id])
-    @articles = @author.articles.all
     @comments = @article.comments.order(created_at: :desc)
-    render json: { author: @authors, articles: @articles, comments: @comments }
+    render json: { article: @article, comments: @comments, tags: @tags }
   end
 
   def create
@@ -49,8 +47,7 @@ class Api::V1::ArticlesController < ApplicationController
   private
 
   def set_article
-    @author = Author.find(params[:author_id])
-    @article = @author.articles.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def article_params

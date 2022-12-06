@@ -15,12 +15,14 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    @comments = @article.comments.order(created_at: :desc)
+    @comments = @article.comments.latest_comments
+    @tags = @article.all_tags
     render json: { article: @article, comments: @comments, tags: @tags }
   end
 
   def create
     @article = Article.new(article_params)
+    @tags = @article.all_tags(params[:name])
     if @article.save
       render json: @article, status: :created
     else
@@ -51,6 +53,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :author_id)
+    params.require(:article).permit(:title, :body, :author_id, :tags)
   end
 end

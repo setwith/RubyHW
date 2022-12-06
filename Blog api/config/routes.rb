@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       end
       resources :articles, only: %i[index index_all show create update destroy]
       resources :comments,
-                only: %i[index show create update destroy update_status] do
+                only: %i[index create update destroy update_status] do
         patch :update_status
       end
       resources :tags

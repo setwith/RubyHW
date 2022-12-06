@@ -7,4 +7,6 @@ class Comment < ApplicationRecord
 
   scope :unpublished, -> { where(status: 0) }
   scope :published, -> { where(status: 1) }
+
+  scope :latest_comments, -> { last(10) }
 end

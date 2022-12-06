@@ -10,4 +10,10 @@ class Article < ApplicationRecord
   def all_tags
     tags.map(&:name).join(',')
   end
+
+  def all_tags=(_names)
+    self.name = names.split(',').map do |name|
+      Tag.where(name: name.strip).first_or_create!
+    end
+  end
 end

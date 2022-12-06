@@ -17,12 +17,12 @@ class Api::V1::ArticlesController < ApplicationController
   def show
     @comments = @article.comments.latest_comments
     @tags = @article.all_tags
-    render json: { article: @article, comments: @comments, tags: @tags }
+    render json: { article: @article, comments: @comments, tags: @tags, likes: @article.likes }
   end
 
   def create
     @article = Article.new(article_params)
-    @tags = @article.all_tags(params[:name])
+    # @tags = @article.all_tags(params[:name])
     if @article.save
       render json: @article, status: :created
     else

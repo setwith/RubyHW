@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get :unpublished_comments
       end
       resources :articles, only: %i[index index_all show create update destroy]
+      resources :likes, only: %i[create destroy]
       resources :comments,
                 only: %i[index create update destroy update_status] do
         patch :update_status

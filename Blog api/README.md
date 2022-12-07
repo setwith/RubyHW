@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Info
 
-Things you may want to cover:
+- Ruby version 3.1.2
+- Ruby on Rails 7.0.4
 
-* Ruby version
+#
 
-* System dependencies
+# To get started with the app just:
 
-* Configuration
+- clone the repo
+<pre> git clone https://github.com/setwith/RubyHW </pre>
 
-* Database creation
+- then run
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```ruby
+rails db:create
+rails db:migrate
+rails db:seed
+rails s
+```

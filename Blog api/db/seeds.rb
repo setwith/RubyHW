@@ -69,3 +69,30 @@ Comment.create([
                    article_id: 1
                  }
                ])
+
+Like.create([
+              { author_id: 1,
+                likeable_type: 'Article',
+                likeable_id: 1 },
+              { author_id: 2,
+                likeable_type: 'Comment',
+                likeable_id: 2 },
+              { author_id: 2,
+                likeable_type: 'Article',
+                likeable_id: 3 },
+              { author_id: 1,
+                likeable_type: 'Comment',
+                likeable_id: 4 }
+            ])
+
+Tag.create([
+             {
+               name: 'study'
+             },
+             {
+               name: 'it'
+             },
+             {
+               name: 'project'
+             }
+           ])

@@ -16,15 +16,15 @@ class Api::V1::ArticlesController < ApplicationController
 
   def show
     @comments = @article.comments.latest_comments
-    @tags = @article.all_tags
+    @tags = @article.tags
     render json: { article: @article, comments: @comments, tags: @tags, likes: @article.likes }
   end
 
   def create
     @article = Article.new(article_params)
-    # @tags = @article.all_tags(params[:name])
+    @tags = @article.tags
     if @article.save
-      render json: @article, status: :created
+      render json: { article: @article, tags: @tags }, status: :created
     else
       render json: @article.errors, status: :unprocessable_entity
     end
@@ -53,6 +53,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :author_id, :tags)
+    params.require(:article).permit(:title, :body, :author_id, tags_attributes: [:name])
   end
 end

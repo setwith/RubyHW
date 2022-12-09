@@ -5,6 +5,8 @@ class Article < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :likes, as: :likeable, dependent: :destroy
 
+  accepts_nested_attributes_for :tags
+
   validates :title, presence: true
   validates :body, presence: true
 

@@ -21,6 +21,10 @@ class Api::V1::ArticlesController < ApplicationController
     render json: { article: @article, comments: @comments, tags: @tags, likes: @article.likes }
   end
 
+  def search
+    @article = Article.where('title || body ~* ?', params[:search])
+  end
+
   def create
     @article = Article.new(article_params)
     @tags = @article.tags

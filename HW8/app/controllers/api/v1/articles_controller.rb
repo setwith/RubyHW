@@ -10,7 +10,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    # @pagy, @records = pagy(Product.some_scope)
+    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
     render json: @articles, status: :ok
   end
 

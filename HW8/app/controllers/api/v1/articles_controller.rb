@@ -23,6 +23,11 @@ class Api::V1::ArticlesController < ApplicationController
 
   def search
     @article = Article.where('title || body ~* ?', params[:search])
+    if @article.blank?
+      render json: @article.errors
+    else
+      render json: @article, status: :ok
+    end
   end
 
   def create
@@ -61,4 +66,8 @@ class Api::V1::ArticlesController < ApplicationController
     params.require(:article).permit(:title, :body, :author_id)
     # params.require(:article).permit(:title, :body, :author_id, tags_attributes: [:name])
   end
+
+  # def filter_params
+  #   params.permit(:author_id, :tag)
+  # end
 end

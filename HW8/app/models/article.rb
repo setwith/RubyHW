@@ -15,6 +15,8 @@ class Article < ApplicationRecord
   scope :unpublished, -> { where(status: 0) }
   scope :published, -> { where(status: 1) }
 
+  scope :filter_by_status, ->(status) { where status: }
+
   # def all_tags
   #   tags.map(&:name).join(',')
   # end

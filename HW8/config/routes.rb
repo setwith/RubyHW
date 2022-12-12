@@ -8,10 +8,8 @@ Rails.application.routes.draw do
       end
       resources :articles do
       end
-      get :index_all
-      get :search
       resources :likes, only: %i[create destroy]
-      resources :comments do
+      resources :comments, only: %i[index create update_status update destrot] do
         patch :update_status
       end
       resources :tags

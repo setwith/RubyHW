@@ -1,5 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: %i[show update destroy]
+  # before_action :set_articles, only: %i[index]
 
   def index_all
     @authors = Author.all
@@ -10,7 +11,17 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def index
-    @pagy, @articles = pagy(Article.order(created_at: params[:order]), items: 15)
+    @articles = Article.where(nil)
+
+    # http://[::1]:3000/api/v1/articles
+    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
+
+    # http://[::1]:3000/api/v1/articles?search=text
+    @articles = Article.where('title || body ILIKE ?', "%#{params[:search]}%") if params[:search]
+
+    # http://[::1]:3000/api/v1/articles?status=unpublished
+    @articles = Article.filter_by_status(params[:status]) if params[:status]
+
     render json: @articles, status: :ok
   end
 
@@ -18,15 +29,6 @@ class Api::V1::ArticlesController < ApplicationController
     @comments = @article.comments.latest_comments
     @tags = @article.tags
     render json: { article: @article, comments: @comments, tags: @tags, likes: @article.likes }
-  end
-
-  def search
-    @article = Article.where('title || body ILIKE ?', "%#{params[:q]}%")
-    if @article.blank?
-      render json: @article.errors
-    else
-      render json: @article, status: :ok
-    end
   end
 
   def create
@@ -64,6 +66,10 @@ class Api::V1::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :author_id, :status)
     # params.require(:article).permit(:title, :body, :author_id, tags_attributes: [:name])
+  end
+
+  def set_articles
+    @articles = Article.all
   end
 
   # def filter_params

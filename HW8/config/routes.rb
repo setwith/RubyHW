@@ -7,8 +7,8 @@ Rails.application.routes.draw do
         get :unpublished_comments
       end
       resources :articles do
-        get :index_all
       end
+      get :index_all
       get :search
       resources :likes, only: %i[create destroy]
       resources :comments do

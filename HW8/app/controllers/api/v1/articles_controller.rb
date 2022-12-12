@@ -10,8 +10,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def index
-    # @pagy, @records = pagy(Product.some_scope)
-    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
+    @pagy, @articles = pagy(Article.order(created_at: params[:order]), items: 15)
     render json: @articles, status: :ok
   end
 
@@ -22,7 +21,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def search
-    @article = Article.where('title || body ~* ?', params[:search])
+    @article = Article.where('title || body ILIKE ?', "%#{params[:q]}%")
     if @article.blank?
       render json: @article.errors
     else

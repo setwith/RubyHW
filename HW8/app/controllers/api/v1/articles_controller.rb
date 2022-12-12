@@ -63,7 +63,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :author_id)
+    params.require(:article).permit(:title, :body, :author_id, :status)
     # params.require(:article).permit(:title, :body, :author_id, tags_attributes: [:name])
   end
 

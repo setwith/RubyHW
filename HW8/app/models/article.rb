@@ -10,6 +10,11 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  enum status: { unpublished: 0, published: 1 }
+
+  scope :unpublished, -> { where(status: 0) }
+  scope :published, -> { where(status: 1) }
+
   # def all_tags
   #   tags.map(&:name).join(',')
   # end

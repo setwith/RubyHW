@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: %i[show update destroy]
-  # before_action :set_articles, only: %i[index]
+  before_action :set_articles, only: %i[index]
 
   def index_all
     @authors = Author.all
@@ -11,16 +11,23 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.where(nil)
-
     # http://[::1]:3000/api/v1/articles
     @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
 
     # http://[::1]:3000/api/v1/articles?search=text
-    @articles = Article.where('title || body ILIKE ?', "%#{params[:search]}%") if params[:search]
+    @articles = @articles.search(params[:search]) if params[:search]
 
-    # http://[::1]:3000/api/v1/articles?status=unpublished
-    @articles = Article.filter_by_status(params[:status]) if params[:status]
+    # http://[::1]:3000/api/v1/articles?status=unpublished/published
+    @articles = @articles.filter_by_status(params[:status]) if params[:status]
+
+    # http://[::1]:3000/api/v1/articles?name=author_name
+    @articles = @articles.filter_by_author(params[:name]) if params[:name]
+
+    # http://[::1]:3000/api/v1/articles?tags=tag_name
+    @articles = @articles.filter_by_tags(params[:tags].split(',')) if params[:tags]
+
+    # http://[::1]:3000/api/v1/articles?order=asc/desc
+    @articles = Article.order(created_at: params[:order]) if params[:order]
 
     render json: @articles, status: :ok
   end
@@ -69,7 +76,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def set_articles
-    @articles = Article.all
+    @articles = Article.where(nil)
   end
 
   # def filter_params

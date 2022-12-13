@@ -15,7 +15,10 @@ class Article < ApplicationRecord
   scope :unpublished, -> { where(status: 0) }
   scope :published, -> { where(status: 1) }
 
+  scope :search, ->(params) { where('title || body ILIKE ?', "%#{params}%") }
   scope :filter_by_status, ->(status) { where status: }
+  scope :filter_by_author, ->(name) { joins(:author).where('authors.name ILIKE ?', "%#{name}%") }
+  scope :filter_by_tags, ->(tags) { joins(:tags).where('tags.name IN (?)', tags) }
 
   # def all_tags
   #   tags.map(&:name).join(',')

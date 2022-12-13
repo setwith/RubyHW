@@ -96,3 +96,22 @@ Tag.create([
                name: 'project'
              }
            ])
+
+Tagging.create([
+                 {
+                   article_id: 1,
+                   tag_id: 1
+                 },
+                 {
+                   article_id: 1,
+                   tag_id: 3
+                 },
+                 {
+                   article_id: 5,
+                   tag_id: 4
+                 },
+                 {
+                   article_id: 5,
+                   tag_id: 2
+                 }
+               ])

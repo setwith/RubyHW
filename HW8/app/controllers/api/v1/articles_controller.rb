@@ -11,9 +11,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def index
-    # http://[::1]:3000/api/v1/articles
-    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
-
     # http://[::1]:3000/api/v1/articles?search=text
     @articles = @articles.search(params[:search]) if params[:search]
 
@@ -29,12 +26,15 @@ class Api::V1::ArticlesController < ApplicationController
     # http://[::1]:3000/api/v1/articles?order=asc/desc
     @articles = Article.order(created_at: params[:order]) if params[:order]
 
+    # http://[::1]:3000/api/v1/articles
+    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
+
     render json: @articles, status: :ok
   end
 
   def show
     @comments = @article.comments.latest
-    render json: { article: @article, comments: @comments, tags: @article.tags, likes: @article.likes }
+    render json: { article: @article, comments: @comments, tags: @article.tags, likes: @article.likes } # серіалайз для одного об'єкта ,serialize: Api::V1::ArticleSerializer
   end
 
   def create
@@ -71,7 +71,7 @@ class Api::V1::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :author_id, :status)
     # для створення одночасно тегу
-    # params.require(:article).permit(:title, :body, :author_id, tags_attributes: [:name])
+    # params.require(:article).permit(:title, :body, :author_id, :status, tags_attributes: [:name])
   end
 
   def set_articles

@@ -38,7 +38,6 @@ class Api::V1::TagsController < ApplicationController
   private
 
   def set_tag
-    # debugger
     @tag = Tag.find(params[:id])
   end
 

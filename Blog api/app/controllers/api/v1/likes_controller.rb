@@ -1,9 +1,8 @@
 class Api::V1::LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
-    @likeable = @like.likeable
     if @like.save
-      render json: @likeable
+      render json: @like.likeable
     else
       render json: @like.errors, status: :unprocessable_entity
     end

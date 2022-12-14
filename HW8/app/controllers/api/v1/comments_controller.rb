@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :set_comment, only: %i[update destroy]
+  before_action :set_comment, only: %i[update destroy update_status]
 
   def index
     @comments = Comment.all
@@ -16,8 +16,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update_status
-    @comment = Comment.find(params[:comment_id])
-    new_status = @comment.status == 'unpublished' ? 'published' : 'unpublished'
     @comment.update(status: new_status)
     render json: @comment, notice: "Comment updated to #{@comment.status} "
   end
@@ -41,10 +39,14 @@ class Api::V1::CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id] || params[:comment_id])
   end
 
   def comment_params
     params.require(:comment).permit(:body, :status, :author_id, :article_id)
+  end
+
+  def new_status
+    @comment.status == 'unpublished' ? 'published' : 'unpublished'
   end
 end

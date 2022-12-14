@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
 
   validates :body, :author_id, :article_id, presence: true
 
-  enum status: { unpublished: 0, published: 1 }
+  enum status: %i[unpublished published]
 
   scope :unpublished, -> { where(status: 0) }
   scope :published, -> { where(status: 1) }

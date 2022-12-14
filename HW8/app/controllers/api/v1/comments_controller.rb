@@ -47,8 +47,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def new_status
-    return Article.statuses[:published] if @comment.status == :unpublished
-
-    Article.statuses[:unpublished]
+    @comment.status == 'unpublished' ? 'published' : 'unpublished'
   end
 end

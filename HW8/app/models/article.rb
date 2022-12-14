@@ -10,7 +10,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  enum :status, %i[unpublished published]
+  enum :status, %i[unpublished published], default: 'unpublished'
 
   scope :unpublished, -> { where(status: :unpublished) }
   scope :published, -> { where(status: :published) }

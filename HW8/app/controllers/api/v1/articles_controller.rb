@@ -13,16 +13,12 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     # http://[::1]:3000/api/v1/articles?search=text
     @articles = @articles.search(params[:search]) if params[:search]
-
     # http://[::1]:3000/api/v1/articles?status=unpublished/published
     @articles = @articles.filter_by_status(params[:status]) if params[:status]
-
     # http://[::1]:3000/api/v1/articles?name=author_name
     @articles = @articles.filter_by_author(params[:name]) if params[:name]
-
     # http://[::1]:3000/api/v1/articles?tags=tag_name
     @articles = @articles.filter_by_tags(params[:tags].split(',')) if params[:tags]
-
     # http://[::1]:3000/api/v1/articles?order=asc/desc
     @articles = Article.order(created_at: params[:order]) if params[:order]
 
@@ -34,7 +30,8 @@ class Api::V1::ArticlesController < ApplicationController
 
   def show
     @comments = @article.comments.latest
-    render json: { article: @article, comments: @comments, tags: @article.tags, likes: @article.likes } # серіалайз для одного об'єкта ,serialize: Api::V1::ArticleSerializer
+    render json: @article,
+           serializer: Api::V1::ArticleSerializer
   end
 
   def create
@@ -70,7 +67,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body, :author_id, :status)
-    # для створення одночасно тегу
+    # For creating tag, nested_attributes. Have difficulty with this
     # params.require(:article).permit(:title, :body, :author_id, :status, tags_attributes: [:name])
   end
 

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :articles do
       end
       resources :likes, only: %i[create destroy]
-      resources :comments, only: %i[index create update_status update destrot] do
+      resources :comments, only: %i[index create update_status update destroy] do
         patch :update_status
       end
       resources :tags

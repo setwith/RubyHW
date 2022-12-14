@@ -1,5 +1,5 @@
 class Api::V1::AuthorsController < ApplicationController
-  before_action :set_author, only: %i[show destroy]
+  before_action :set_author, only: %i[show destroy published_comments unpublished_comments]
 
   def index
     @authors = Author.all
@@ -11,14 +11,12 @@ class Api::V1::AuthorsController < ApplicationController
   end
 
   def published_comments
-    @author = Author.find(params[:author_id])
-    @comments = @author.comments.published.order(created_at: :desc)
+    @comments = @author.comments.published.order_comments
     render json: @comments
   end
 
   def unpublished_comments
-    @author = Author.find(params[:author_id])
-    @comments = @author.comments.unpublished.order(created_at: :desc)
+    @comments = @author.comments.unpublished.order_comments
     render json: @comments
   end
 
@@ -42,7 +40,7 @@ class Api::V1::AuthorsController < ApplicationController
   private
 
   def set_author
-    @author = Author.find(params[:id])
+    @author = Author.find(params[:id] || params[:author_id])
   end
 
   def author_params

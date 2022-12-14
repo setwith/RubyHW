@@ -19,14 +19,4 @@ class Article < ApplicationRecord
   scope :filter_by_status, ->(status) { where status: }
   scope :filter_by_author, ->(name) { joins(:author).where('authors.name ILIKE ?', "%#{name}%") }
   scope :filter_by_tags, ->(tags) { joins(:tags).where('tags.name IN (?)', tags) }
-
-  # def all_tags
-  #   tags.map(&:name).join(',')
-  # end
-
-  # def all_tags=(_names)
-  #   self.name = names.split(',').map do |name|
-  #     Tag.where(name: name.strip).first_or_create!
-  #   end
-  # end
 end

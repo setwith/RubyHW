@@ -5,10 +5,11 @@ class Comment < ApplicationRecord
 
   validates :body, :author_id, :article_id, presence: true
 
-  enum status: %i[unpublished published]
+  enum :status, %i[unpublished published]
 
-  scope :unpublished, -> { where(status: 0) }
-  scope :published, -> { where(status: 1) }
+  scope :unpublished, -> { where(status: :unpublished) }
+  scope :published, -> { where(status: :published) }
 
-  scope :latest_comments, -> { last(10) }
+  scope :latest, -> { last(10) }
+  scope :order_comments, -> { order(created_at: :desc) }
 end

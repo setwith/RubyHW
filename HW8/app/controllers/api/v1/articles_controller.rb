@@ -20,12 +20,12 @@ class Api::V1::ArticlesController < ApplicationController
     # http://[::1]:3000/api/v1/articles?tags=tag_name
     @articles = @articles.filter_by_tags(params[:tags].split(',')) if params[:tags]
     # http://[::1]:3000/api/v1/articles?order=asc/desc
-    @articles = Article.order(created_at: params[:order]) if params[:order]
+    @articles = @articles.order(created_at: params[:order]) if params[:order]
 
     # http://[::1]:3000/api/v1/articles
-    @pagy, @articles = pagy(Article.order(created_at: :desc), items: 15)
+    @pagy, @articles = pagy(@articles.order(created_at: :desc), items: 15)
 
-    render json: @articles, status: :ok
+    render json: { articles: @articles, info: @pagy }, status: :ok
   end
 
   def show

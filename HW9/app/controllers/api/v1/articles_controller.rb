@@ -2,14 +2,6 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: %i[show update destroy]
   before_action :set_articles, only: %i[index]
 
-  def index_all
-    @authors = Author.all
-    @articles = Article.all
-    @comments = Comment.all
-    @tags = Tag.all
-    render json: { author: @authors, articles: @articles, comments: @comments, tags: @tags }
-  end
-
   def index
     # http://[::1]:3000/api/v1/articles?search=text
     @articles = @articles.search(params[:search]) if params[:search]

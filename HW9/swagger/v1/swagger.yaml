@@ -17,9 +17,12 @@ paths:
           type: string
       - name: status
         in: query
-        description: пошук по статусу статті (published/unpublished)
         schema:
           type: string
+          enum:
+          - unpublished
+          - published
+        description: пошук по статусу статті (published/unpublished)
       - name: name
         in: query
         description: пошук статті по автору
@@ -44,8 +47,10 @@ paths:
       - Articles
       parameters: []
       responses:
-        '200':
-          description: successful
+        '201':
+          description: article created
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:
@@ -80,6 +85,10 @@ paths:
       responses:
         '200':
           description: successful
+        '404':
+          description: blog not found
+        '406':
+          description: unsupported accept header
     put:
       summary: update article
       tags:

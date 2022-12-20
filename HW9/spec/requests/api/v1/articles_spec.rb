@@ -7,7 +7,7 @@ RSpec.describe 'api/v1/articles', type: :request do
       consumes 'application/json'
       parameter name: :search, in: :query, type: :string,
                 description: 'пошук в статті по title або body'
-      parameter name: :status, in: :query, type: :string,
+      parameter name: :status, in: :query, schema: { type: :string, enum: %w[unpublished published] },
                 description: 'пошук по статусу статті (published/unpublished)'
       parameter name: :name, in: :query, type: :string,
                 description: 'пошук статті по автору'
@@ -42,7 +42,22 @@ RSpec.describe 'api/v1/articles', type: :request do
         required: %w[title body author_id status]
       }
 
-      response(200, 'successful') do
+      response(201, 'article created') do
+        let(:article) { { title: 'title', body: 'body', author_id: '1', status: 'published' } }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'invalid request') do
+        let(:article) { { title: 'title' } }
+
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -63,8 +78,28 @@ RSpec.describe 'api/v1/articles', type: :request do
       tags 'Articles'
       consumes 'application/json'
       response(200, 'successful') do
-        let(:id) { '123' }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
 
+      response(404, 'blog not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(406, 'unsupported accept header') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

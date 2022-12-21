@@ -118,7 +118,7 @@ paths:
       tags:
       - Articles
       responses:
-        '200':
+        '204':
           description: successful
   "/api/v1/comments":
     get:

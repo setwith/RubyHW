@@ -1,0 +1,7 @@
+<p>Welcome</p>
+<div>
+<%= @products.each do |product| %>
+  <%= render product %>
+<% end %>
+</div>
+<%= link_to 'Sing out', destroy_user_session_path, data: { turbo_method: :delete } %>

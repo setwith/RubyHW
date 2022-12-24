@@ -4,7 +4,8 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :description, :price, :image
+  permit_params :name, :description, :price, :image,
+                product_categories_attributes: %i[id product_id category_id _destroy]
   #
   # or
   #
@@ -13,4 +14,18 @@ ActiveAdmin.register Product do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form do |f|
+    f.inputs 'Products category' do
+      f.input :name
+      f.input :description
+      f.input :price
+      f.input :image
+      f.has_many :product_categories, allow_destroy: true do |n_f|
+        n_f.input :category
+      end
+
+      f.actions
+    end
+  end
 end

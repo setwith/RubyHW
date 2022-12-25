@@ -13,7 +13,7 @@ RSpec.describe 'api/v1/articles', type: :request do
                 description: 'пошук статті по автору'
       parameter name: :tags, in: :query, type: :string,
                 description: 'пошук статті по тегу'
-      parameter name: :order, in: :query, type: :string,
+      parameter name: :order, in: :query, schema: { type: :string, enum: %w[asc desc] },
                 description: 'сорторування статей (asc/desc)'
 
       response(200, 'successful') do
@@ -37,7 +37,7 @@ RSpec.describe 'api/v1/articles', type: :request do
           title: { type: :string },
           body: { type: :string },
           author_id: { type: :integer },
-          stutus: { type: :string }
+          status: { type: :string }
         },
         required: %w[title body author_id status]
       }
@@ -55,9 +55,29 @@ RSpec.describe 'api/v1/articles', type: :request do
         run_test!
       end
 
-      response(422, 'invalid request') do
-        let(:article) { { title: 'title' } }
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
 
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -136,6 +156,39 @@ RSpec.describe 'api/v1/articles', type: :request do
         end
         run_test!
       end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
     delete('delete article') do
@@ -151,6 +204,17 @@ RSpec.describe 'api/v1/articles', type: :request do
             expect(Article.find_by_id('id')).to eq(nil)
           end
         end
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
       end
     end
   end

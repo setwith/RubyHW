@@ -35,9 +35,12 @@ paths:
           type: string
       - name: order
         in: query
-        description: сорторування статей (asc/desc)
         schema:
           type: string
+          enum:
+          - asc
+          - desc
+        description: сорторування статей (asc/desc)
       responses:
         '200':
           description: successful
@@ -49,8 +52,12 @@ paths:
       responses:
         '201':
           description: article created
+        '400':
+          description: bad request
         '422':
-          description: invalid request
+          description: unprocessable entity
+        '500':
+          description: internal server error
       requestBody:
         content:
           application/json:
@@ -63,7 +70,7 @@ paths:
                   type: string
                 author_id:
                   type: integer
-                stutus:
+                status:
                   type: string
               required:
               - title
@@ -97,6 +104,12 @@ paths:
       responses:
         '200':
           description: successful
+        '400':
+          description: bad request
+        '422':
+          description: unprocessable entity
+        '500':
+          description: internal server error
       requestBody:
         content:
           application/json:
@@ -120,6 +133,8 @@ paths:
       responses:
         '204':
           description: successful
+        '404':
+          description: not found
   "/api/v1/comments":
     get:
       summary: list comments
@@ -134,8 +149,14 @@ paths:
       - Comments
       parameters: []
       responses:
-        '200':
-          description: successful
+        '201':
+          description: created
+        '400':
+          description: bad request
+        '422':
+          description: unprocessable entity
+        '500':
+          description: internal server error
       requestBody:
         content:
           application/json:
@@ -170,6 +191,8 @@ paths:
       responses:
         '200':
           description: successful
+        '404':
+          description: not found
   "/api/v1/comments/{id}":
     parameters:
     - name: id
@@ -186,6 +209,10 @@ paths:
       responses:
         '200':
           description: successful
+        '400':
+          description: bad request
+        '404':
+          description: not found
       requestBody:
         content:
           application/json:
@@ -203,6 +230,8 @@ paths:
       responses:
         '200':
           description: successful
+        '404':
+          description: not found
 servers:
 - url: http://{defaultHost}
   variables:

@@ -30,7 +30,41 @@ RSpec.describe 'api/v1/comments', type: :request do
         },
         required: %w[body status author_id article_id]
       }
-      response(200, 'successful') do
+
+      response(201, 'created') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -53,6 +87,17 @@ RSpec.describe 'api/v1/comments', type: :request do
       response(200, 'successful') do
         let(:comment_id) { '123' }
 
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -92,6 +137,28 @@ RSpec.describe 'api/v1/comments', type: :request do
         end
         run_test!
       end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
     delete('delete comment') do
@@ -99,6 +166,17 @@ RSpec.describe 'api/v1/comments', type: :request do
       response(200, 'successful') do
         let(:id) { '123' }
 
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

@@ -43,8 +43,6 @@ RSpec.describe 'api/v1/articles', type: :request do
       }
 
       response(201, 'article created') do
-        let(:article) { { title: 'title', body: 'body', author_id: '1', status: 'published' } }
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -97,7 +95,11 @@ RSpec.describe 'api/v1/articles', type: :request do
     get('show article') do
       tags 'Articles'
       consumes 'application/json'
+
       response(200, 'successful') do
+        let(:author) { create(:author) }
+        let(:article) { create(:article, title: 'foo', author:) }
+        let(:id) { article.id }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -105,10 +107,13 @@ RSpec.describe 'api/v1/articles', type: :request do
             }
           }
         end
-        run_test!
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['title']).to eq('foo')
+        end
       end
 
-      response(404, 'blog not found') do
+      response(404, 'article not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -168,6 +173,17 @@ RSpec.describe 'api/v1/articles', type: :request do
         run_test!
       end
 
+      response(404, 'article not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
       response(422, 'unprocessable entity') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -206,7 +222,7 @@ RSpec.describe 'api/v1/articles', type: :request do
         end
       end
 
-      response(404, 'not found') do
+      response(404, 'article not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

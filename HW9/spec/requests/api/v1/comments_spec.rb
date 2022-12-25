@@ -4,7 +4,6 @@ RSpec.describe 'api/v1/comments', type: :request do
   path '/api/v1/comments' do
     get('list comments') do
       tags 'Comments'
-
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -83,7 +82,6 @@ RSpec.describe 'api/v1/comments', type: :request do
 
     patch('update_status comment') do
       tags 'Comments'
-
       response(200, 'successful') do
         let(:comment_id) { '123' }
 
@@ -97,7 +95,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         run_test!
       end
 
-      response(404, 'not found') do
+      response(404, 'comment not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -149,7 +147,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         run_test!
       end
 
-      response(404, 'not found') do
+      response(404, 'comment not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -176,7 +174,7 @@ RSpec.describe 'api/v1/comments', type: :request do
         run_test!
       end
 
-      response(404, 'not found') do
+      response(404, 'comment not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

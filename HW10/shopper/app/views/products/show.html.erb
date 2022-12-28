@@ -3,8 +3,9 @@
       <div style="margin:0" class="col-lg-6 mg-0">
         <h1 class="display-5 fw-bold lh-1 mb-3"><%= @product.name %></h1>
         <p class="lead"><%= @product.description %></p>
+        <h6 class="lead">Categories:</h6>
         <% @product.categories.each do |category|%>
-        <h6 class="lead">Categories: <%= category.title %></h6>
+        <h6 class="lead"> <%= category.title %></h6>
         <% end %>
         <p class="lead"><%= number_to_currency(@product.price) %></p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">

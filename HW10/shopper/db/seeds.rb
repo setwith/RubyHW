@@ -13,16 +13,16 @@ Category.create(title: 'Clothes, shoes and jewelry')
 
 # Product
 Product.create(name: 'Computer ARTLINE',
-               description: 'Gaming ASUS Edition X43 (X43v33) Ryzen 5 3600/RAM 16ГБ/HDD 1ТБ + SSD 240ГБ/GeForce RTX 3050 8ГБ/Wi-Fi', price: 898, image: '')
+               description: 'Gaming ASUS Edition X43 (X43v33) Ryzen 5 3600/RAM 16ГБ/HDD 1ТБ + SSD 240ГБ/GeForce RTX 3050 8ГБ/Wi-Fi', price: 898, image: 'https://content2.rozetka.com.ua/goods/images/big/244859893.jpg')
 Product.create(name: 'Laptop Acer Aspire 7', description: 'A715-42G-R8BL (NH.QDLEU.008) Charcoal Black', price: 978,
-               image: '')
-Product.create(name: 'Apple MacBook Air 13', description: 'M1 256GB 2020 (MGND3) Gold', price: 1021, image: '')
-Product.create(name: 'TV Samsung', description: 'UE50AU7100UXUA', price: 655, image: '')
-Product.create(name: 'Apple iPhone 13', description: '128GB Pink ', price: 766, image: '')
-Product.create(name: 'T-shirt COS', description: '0960679 S white', price: '28', image: '')
+               image: 'https://content1.rozetka.com.ua/goods/images/big/254116608.jpg')
+Product.create(name: 'Apple MacBook Air 13', description: 'M1 256GB 2020 (MGND3) Gold', price: 1021, image: 'https://content.rozetka.com.ua/goods/images/big/30872664.jpg')
+Product.create(name: 'TV Samsung', description: 'UE50AU7100UXUA', price: 655, image: 'https://content.rozetka.com.ua/goods/images/big/303985202.jpg')
+Product.create(name: 'Apple iPhone 13', description: '128GB Pink ', price: 766, image: 'https://content2.rozetka.com.ua/goods/images/big/221214151.jpg')
+Product.create(name: 'T-shirt COS', description: '0960679 S white', price: '28', image: 'https://content2.rozetka.com.ua/goods/images/big/298330107.jpg')
 Product.create(name: 'Jack Wolfskin down jacket', description: 'Crystal Palace Coat 1204131-5066', price: '344',
-               image: '')
-Product.create(name: 'Pendant with Swarovski crystals', description: '9299 Italina', price: '98', image: '')
+               image: 'https://content2.rozetka.com.ua/goods/images/big/251426267.jpg')
+Product.create(name: 'Pendant with Swarovski crystals', description: '9299 Italina', price: '98', image: 'https://content1.rozetka.com.ua/goods/images/big/245243741.jpg')
 
 # Product_categories
 ProductCategory.create(product_id: 1, category_id: 1)

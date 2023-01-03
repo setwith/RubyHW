@@ -17,7 +17,7 @@
 ```ruby
 gem install bundler
 
-bundle install
+bundle
 ```
 
 - then run
@@ -39,6 +39,6 @@ rails s
 
 - to log in as user visit `http://localhost:3000`
 
-`User: 'user@example.com'`
+`User: user@example.com`
 
 `Password: password`

@@ -1,0 +1,16 @@
+<div class="col" id="<%= dom_id product %>">
+  <div class="card shadow-sm">
+    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src=<%= product.image %> class="card-img-top" alt=<%= product.name %>>
+    <div class="card-body">
+      <p class="card-text"><%= link_to product.name, product %></p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <%=  link_to product do %>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Learn more</button>
+          <% end %>
+        </div>
+        <small class="text-muted"><%= number_to_currency(product.price) %></small>
+      </div>
+    </div>
+  </div>
+</div>

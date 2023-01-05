@@ -5,9 +5,15 @@
       <p class="card-text"><%= link_to product.name, product %></p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-          <%=  link_to product do %>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Learn more</button>
-          <% end %>
+        <%if user_signed_in? %>
+            <%=  link_to cart_path do %>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+            <% end %>
+          <% else %>
+            <%=  link_to new_user_session_path do %>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+            <% end %>
+        <% end %>
         </div>
         <small class="text-muted"><%= number_to_currency(product.price) %></small>
       </div>

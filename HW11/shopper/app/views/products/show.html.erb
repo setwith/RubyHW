@@ -10,7 +10,15 @@
       <p class="lead"><%= number_to_currency(@product.price) %></p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Buy</button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Add to order</button>
+        <%if user_signed_in? %>
+            <%=  link_to cart_path do %>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4">Add to cart</button>
+            <% end %>
+          <% else %>
+            <%=  link_to new_user_session_path do %>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4">Add to cart</button>
+            <% end %>
+        <% end %>
       </div>
     </div>
     <div style="margin:0" class="col-10 col-sm-8 col-lg-6">

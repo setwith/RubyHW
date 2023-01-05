@@ -8,5 +8,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'products#index'
+
+  # Defines the cart path route
   get 'cart', to: 'carts#show', as: :cart
+  resources :line_items, only: :create
 end

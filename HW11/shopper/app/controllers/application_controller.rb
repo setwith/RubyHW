@@ -8,4 +8,6 @@ class ApplicationController < ActionController::Base
     cookies[:cart_id] = cart.id
     cart
   end
+  
+  helper_method :current_cart
 end

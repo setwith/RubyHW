@@ -5,7 +5,9 @@ class Cart < ApplicationRecord
     line_items.create!(product:, quantity: 1)
   end
 
+
+
   def total_price
-    line_items.map(&:product).sum(&:price)
+    line_items.to_a.sum { |line_item| line_item.total }
   end
 end

@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   post 'line_items/:id/increase_quantity', to: 'line_items#increase_quantity', as: 'line_item_increase'
   post 'line_items/:id/decrease_quantity', to: 'line_items#decrease_quantity', as: 'line_item_decrease'
   resources :orders, only: %i[create show]
+  patch 'orders/:id/update_status', to: 'orders#update_status', as: 'order_paid'
 end

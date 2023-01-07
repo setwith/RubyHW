@@ -1,3 +1,4 @@
+<% if current_user %>
 <div class="container text-center">
   <h3>Your Order</h3>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -36,5 +37,12 @@
     </tbody>
     </table>
   </div>
-  <%= button_to 'Proceed to payment', order_paid_path, method: :patch, class: "btn btn-primary btn-lg"%>
+  <% if @order.status == 'paid' %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <h4>Paid</h4>
+    </div>
+  <% else %>
+    <%= button_to 'Proceed to payment', order_paid_path, method: :patch, class: "btn btn-primary btn-lg" %>
+  <% end %>
 </div>
+<% end %>

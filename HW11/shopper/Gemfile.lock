@@ -273,6 +273,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
+  ransack (~> 3.2)
   redis (~> 4.0)
   sassc-rails
   sprockets-rails

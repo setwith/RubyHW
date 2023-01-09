@@ -1,0 +1,4 @@
+<%= search_form_for(@querry, url: search_path, method: :get, class: 'form-control form-control-dark text-bg-dark')  do |f| %>
+    <%= f.search_field :name_or_description_i_cont_any, placeholder: "Search..." %>
+    <%= f.submit "Search!" %>
+<% end %>

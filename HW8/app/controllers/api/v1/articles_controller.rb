@@ -12,7 +12,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def index
     # http://[::1]:3000/api/v1/articles?search=text
-    @articles = @articles.search(params[:search]) if params[:search]
+    @articles = @articles.search(querry[:search]) if querry[:search]
     # http://[::1]:3000/api/v1/articles?status=unpublished/published
     @articles = @articles.filter_by_status(params[:status]) if params[:status]
     # http://[::1]:3000/api/v1/articles?name=author_name
@@ -69,9 +69,5 @@ class Api::V1::ArticlesController < ApplicationController
     params.require(:article).permit(:title, :body, :author_id, :status)
     # For creating tag, nested_attributes. Have difficulty with this
     # params.require(:article).permit(:title, :body, :author_id, :status, tags_attributes: [:name])
-  end
-
-  def set_articles
-    @articles = Article.where(nil)
   end
 end

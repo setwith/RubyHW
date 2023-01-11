@@ -9,10 +9,13 @@ class CheckoutsController < ApplicationController
                         .payment_processor
                         .checkout(
                           mode: 'payment',
-                          line_items: 'price_1MOxXgHALZtoIW7LE0Ors13e'
-                          seccess_url: checkout_seccess_url
+                          line_items: 'price_1MP0IFHALZtoIW7LhgMPpa7L',
+                          success_url: checkout_success_url
                         )
   end
 
-  def success; end
+  def success
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
+  end
 end

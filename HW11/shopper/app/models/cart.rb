@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  has_many :line_items, dependent: :nullify
+  has_many :line_items, dependent: :destroy
   has_one :order
 
   def add_product(product)

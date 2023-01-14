@@ -23,9 +23,7 @@ bundle
 - then run
 
 ```ruby
-rails db:create
-rails db:migrate
-rails db:seed
+rails db:setup
 rails s
 ```
 

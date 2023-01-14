@@ -1,0 +1,32 @@
+<div class="col" %>
+  <div class="card shadow-sm">
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <% @products.each do |product| %>
+              <div class="col">
+                <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" src=<%= product.image %> class="card-img-top" alt=<%= product.name %>>
+                  <div class="card-body">
+                    <p class="card-text"><%= link_to product.name, product %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                      <%if user_signed_in? %>
+                            <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
+                        <% else %>
+                          <%=  link_to new_user_session_path do %>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+                          <% end %>
+                      <% end %>
+                      </div>
+                      <small class="text-muted"><%= number_to_currency(product.price) %></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

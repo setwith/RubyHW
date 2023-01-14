@@ -12,9 +12,9 @@ class Api::V1::ArticlesController < ApplicationController
 
   def index
     # http://[::1]:3000/api/v1/articles?search=text
-    @articles = @articles.search(querry[:search]) if querry[:search]
-    # http://[::1]:3000/api/v1/articles?status=unpublished/published
-    @articles = @articles.filter_by_status(params[:status]) if params[:status]
+    @articles = @articles.search(params[:query]) if params[:query]
+    # http://[::1]:3000/api/v1/articles?status_type=unpublished/published
+    @articles = @articles.filter_by_status(params[:status_type]) if params[:status_type]
     # http://[::1]:3000/api/v1/articles?name=author_name
     @articles = @articles.filter_by_author(params[:name]) if params[:name]
     # http://[::1]:3000/api/v1/articles?tags=tag_name
@@ -63,6 +63,10 @@ class Api::V1::ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def set_articles
+    @articles = Article.all
   end
 
   def article_params

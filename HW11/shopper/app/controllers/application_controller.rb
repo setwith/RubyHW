@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_querry
+  helper_method :current_cart
 
   def set_querry
     @querry = Product.ransack(params[:q])
@@ -12,6 +13,4 @@ class ApplicationController < ActionController::Base
     cookies[:cart_id] = cart.id
     cart
   end
-
-  helper_method :current_cart
 end

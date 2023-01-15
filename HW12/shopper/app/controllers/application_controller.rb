@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :set_querry
+  before_action :set_query
   helper_method :current_cart
 
-  def set_querry
-    @querry = Product.ransack(params[:q])
+  def set_query
+    @query = Product.ransack(params[:q])
   end
 
   def current_cart

@@ -1,3 +1,3 @@
-<%= search_form_for(@querry, url: search_path, method: :get)  do |f| %>
+<%= search_form_for(@query, url: search_path, method: :get)  do |f| %>
     <%= f.search_field :name_or_description_i_cont_any, placeholder: "Search...", class: 'form-control form-control-dark text-bg-dark' %>
 <% end %>

@@ -11,7 +11,7 @@ class Cart < ApplicationRecord
   has_one :order, dependent: :destroy
 
   def add_product(product)
-    line_items.create!(product:, quantity: 1)
+    line_items.create(product:, quantity: 1)
   end
 
   def total_price

@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   # Defines the cart path route
   get 'cart', to: 'carts#show', as: :cart
-  resources :line_items, only: %i[create destroy]
-  post 'line_items/:id/increase_quantity', to: 'line_items#increase_quantity', as: 'line_item_increase'
-  post 'line_items/:id/decrease_quantity', to: 'line_items#decrease_quantity', as: 'line_item_decrease'
+  resources :line_items, only: %i[create destroy update]
+  # post 'line_items/:id/increase_quantity', to: 'line_items#increase_quantity', as: 'line_item_increase'
+  # post 'line_items/:id/decrease_quantity', to: 'line_items#decrease_quantity', as: 'line_item_decrease'
   resources :orders, only: %i[index create show destroy]
-  patch 'orders/:id/update_status', to: 'orders#update_status', as: 'order_paid'
+  patch 'orders/:id/update', to: 'orders#update', as: 'order_paid'
 end

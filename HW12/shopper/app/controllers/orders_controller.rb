@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: %i[show update_status destroy]
+  before_action :set_order, only: %i[show update destroy]
 
   def index
     @orders = current_user.orders
@@ -14,8 +14,8 @@ class OrdersController < ApplicationController
 
   def show; end
 
-  def update_status
-    @order.update(status: :paid)
+  def update
+    @order.paid!
     cookies.delete(:cart_id)
 
     redirect_to order_path(@order), notice: 'Order was paid successfully'

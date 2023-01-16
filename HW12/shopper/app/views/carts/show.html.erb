@@ -22,13 +22,13 @@
                   <%= line_item.quantity %>
                 </div>
                 <div class="col-4 col-lg-2">
-                  <%= button_to "-", line_item_decrease_path(line_item), method: :post, class: "btn btn-outline-secondary" %>
+                  <%= button_to "-", line_item_path(line_item), params: { action: 'decrease'}, method: :patch, class: "btn btn-outline-secondary" %>
                 </div>
                 <div class="col-4 col-lg-2">
-                <%= button_to "+", line_item_increase_path(line_item), method: :post, class: "btn btn-outline-secondary" %>
+                <%= button_to "+", line_item_path(line_item), params: { action: 'increase'}, method: :patch, class: "btn btn-outline-secondary" %>
                 </div>
                 <div class="col">
-                <%= button_to "delete", line_item_path(:id => line_item), method: :delete, class: "btn btn-outline-secondary" %>
+                <%= button_to "delete", line_item_path(line_item), method: :delete, class: "btn btn-outline-secondary" %>
                 </div>
               </div>
             </div>
@@ -50,6 +50,3 @@
     <h1>Curently no items in the cart</h1>
   <% end %>
 <% end %>
-  
-
-

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :set_query
   helper_method :current_cart
+  before_action :set_query, :handle_cookies
 
   def set_query
     @query = Product.ransack(params[:q])
@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
 
   def current_cart
     Cart.find(cookies[:cart_id])
-  rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    cookies[:cart_id] = cart.id
-    cart
+  end
+
+  def handle_cookies
+    cookies[:cart_id] = Cart.create.id unless cookies[:cart_id].present?
   end
 end

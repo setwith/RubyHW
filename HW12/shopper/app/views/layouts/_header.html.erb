@@ -4,8 +4,8 @@
       <div class="col">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <%= link_to root_path do %>
-        <%= image_tag('logo.png', width: '150px') %>
-      <% end %>
+          <%= image_tag('logo.png', width: '150px') %>
+          <% end %>
         </div>
       </div>
 
@@ -13,9 +13,9 @@
         <%= render 'search/form' %>
       </div>
 
-      <% if user_signed_in? %>
-        <div class="col">
-          <div class="text-end">
+      <div class="col">
+        <div class="text-end">
+          <% if user_signed_in? %>
             <div class="dropdown-center">
               <button class="btn btn-outline-light me-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Profile
@@ -35,9 +35,9 @@
             </div>
             <% else %>
             <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light me-2" %>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </header>

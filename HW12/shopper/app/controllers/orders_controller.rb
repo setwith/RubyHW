@@ -12,7 +12,9 @@ class OrdersController < ApplicationController
     redirect_to order_path(order), notice: 'Order was created successfully'
   end
 
-  def show; end
+  def show
+    @line_items = @order.cart.line_items
+  end
 
   def update
     @order.paid!

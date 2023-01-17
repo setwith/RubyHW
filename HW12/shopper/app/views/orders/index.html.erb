@@ -20,7 +20,7 @@
           <td>
             <div class="row">
             <div class="col">
-                <%= button_to "Show", order_path(order), method: :get, class: "btn btn-outline-secondary" %>
+                <%= link_to "Show", order_path(order), class: "btn btn-outline-secondary" %>
               </div>
               <div class="col">
                 <%= button_to "Delete", order_path(order), method: :delete, class: "btn btn-outline-secondary" %>
@@ -28,12 +28,11 @@
             </div>
           </td>
           </tr>
-      <% end %>
-    
+        </tbody>
+        <% end %>
+      </table>
     </div>
-  </div>
 <% else %>
-  <div class="container text-center">
     <h3>You don't have any orders </h3>
   </div>
 <% end %>

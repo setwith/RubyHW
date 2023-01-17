@@ -6,17 +6,15 @@
             <% @products.each do |product| %>
               <div class="col">
                 <div class="card shadow-sm" style="width: 20rem;">
-                <img class="bd-placeholder-img card-img-top" height="225" src=<%= product.image %> class="card-img-top" alt=<%= product.name %>>
+                <img class="bd-placeholder-img card-img-top" height="225" src=<%= product.image %> alt="<%= product.name %>">
                   <div class="card-body">
                     <p class="card-text"><%= link_to product.name, product %></p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                       <%if user_signed_in? %>
-                            <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
-                        <% else %>
-                          <%=  link_to new_user_session_path do %>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
-                          <% end %>
+                        <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
+                      <% else %>
+                        <%= link_to'Add to cart', new_user_session_path, class:"btn btn-sm btn-outline-secondary" %>
                       <% end %>
                       </div>
                       <small class="text-muted"><%= number_to_currency(product.price) %></small>

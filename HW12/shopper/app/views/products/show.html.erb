@@ -1,21 +1,21 @@
 <div class="container col-xxl-8 px-4 py-5">
   <div class="row flex-lg-row-reverse align-items-center g-5">
-    <div style="margin:0" class="col-lg-6 mg-0">
+    <div class="col-lg-6 mg-0 mt-0">
       <h1 class="display-5 fw-bold lh-1 mb-3"><%= @product.name %></h1>
-      <p class="lead"><%= @product.description %></p>
-      <h6 class="lead">Categories:</h6>
-      <% @product.categories.each do |category|%>
-      <h6 class="lead"> <%= category.title %></h6>
-      <% end %>
-      <p class="lead"><%= number_to_currency(@product.price) %></p>
+        <div class='lead'>
+          <p><%= @product.description %></p>
+          <h6>Categories:</h6>
+          <% @categories.each do |category|%>
+          <h6> <%= category.title %></h6>
+          <% end %>
+          <p><%= number_to_currency(@product.price) %></p>
+        </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Buy</button>
         <%if user_signed_in? %>
             <%= button_to 'Add to cart', line_items_path(product_id: @product.id), class:"btn btn-outline-secondary btn-lg px-4" %>
           <% else %>
-            <%=  link_to new_user_session_path do %>
-              <button type="button" class="btn btn-outline-secondary btn-lg px-4">Add to cart</button>
-            <% end %>
+            <%= link_to 'Add to cart', new_user_session_path, class:"btn btn-outline-secondary btn-lg px-4" %>
         <% end %>
       </div>
     </div>

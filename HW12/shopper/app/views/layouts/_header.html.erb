@@ -1,7 +1,6 @@
 <header class="p-3 text-bg-dark">
   <div class="container">
     <div class="row">
-
       <div class="col">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <%= link_to root_path do %>
@@ -34,16 +33,11 @@
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      <% else %>
-        <div class="col">
-          <div class="text-end">
+            <% else %>
             <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light me-2" %>
           </div>
         </div>
       <% end %>
-      
     </div>
   </div>
 </header>

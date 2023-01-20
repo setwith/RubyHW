@@ -5,7 +5,11 @@ class OrderMailer < ApplicationMailer
   #   en.order_mailer.new_order_email.subject
   #
   def new_order_email
+    @user = params[:user]
+    @order = params[:order]
     @greeting = 'Hi'
+
+    @line_items = @order.cart.line_items
 
     mail(
       to: 'to@example.org',

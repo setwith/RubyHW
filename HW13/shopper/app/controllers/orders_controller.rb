@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   def update
     @order.paid!
     cookies.delete(:cart_id)
-    OrderMailer.new_order_email.deliver_now
+    OrderMailer.with(user: current_user, order: @order).new_order_email.deliver_now
 
     redirect_to order_path(@order), notice: 'Order was paid successfully'
   end

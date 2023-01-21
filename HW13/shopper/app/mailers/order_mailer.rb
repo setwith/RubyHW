@@ -12,7 +12,7 @@ class OrderMailer < ApplicationMailer
     @line_items = @order.cart.line_items
 
     mail(
-      to: 'to@example.org',
+      to: @user.email,
       subject: 'Order created successfully'
     )
   end

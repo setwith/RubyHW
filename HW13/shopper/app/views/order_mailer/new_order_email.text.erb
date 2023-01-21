@@ -1,3 +1,16 @@
-Order#new_order_email
+Order confirmation
 
-<%= @greeting %>, find me in app/views/order_mailer/new_order_email.text.erb
+<%= @user.email%>, thank you for your order. We've recevied your order and will contact you as your package is shipped. You can find your purchase information below.
+===============================================
+
+Order details
+--------------------------
+
+<% @line_items.each do |line_item| %>
+    <%= line_item.product.name %>
+    Quantity: <%= line_item.quantity %>
+    Price: <%= number_to_currency(line_item.total_price) %>
+    -----
+<% end %>
+
+Total price: <%= number_to_currency @order.cart.total_price %>

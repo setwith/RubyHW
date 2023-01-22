@@ -20,7 +20,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :price
-      f.input :image
+      f.input :image, as: :file
       f.has_many :product_categories, allow_destroy: true do |n_f|
         n_f.input :category
       end

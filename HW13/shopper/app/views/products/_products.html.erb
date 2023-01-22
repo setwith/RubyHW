@@ -7,6 +7,9 @@
               <div class="col">
                 <div class="card shadow-sm" style="width: 20rem;">
                 <img class="bd-placeholder-img card-img-top" height="225" src=<%= product.image %> alt="<%= product.name %>">
+                <% if product.image.attached? %>
+                  <%= image_tag product.image, class: 'card-img-top', alt: product.name %>
+                <% end %>
                   <div class="card-body">
                     <p class="card-text"><%= link_to product.name, product %></p>
                     <div class="d-flex justify-content-between align-items-center">

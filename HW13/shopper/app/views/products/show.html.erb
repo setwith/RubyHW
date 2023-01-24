@@ -21,7 +21,7 @@
     </div>
     <div style="margin:0" class="col-10 col-sm-8 col-lg-6">
     <% if @product.image.attached? %>
-      <%= image_tag @product.image, class: 'class="bd-placeholder-img card-img-top', alt: @product.name %>
+      <%= image_tag @product.image.variant(:main), class: 'class="bd-placeholder-img card-img-top', alt: @product.name %>
       <% else %>
       <%= image_tag("no_image_item.jpeg", class: 'class="bd-placeholder-img card-img-top', alt: 'Photo coming soon') %>
     <% end %>

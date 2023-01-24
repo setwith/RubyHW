@@ -7,7 +7,7 @@
               <div class="col">
                 <div class="card shadow-sm" style="width: 20rem;">
                   <% if product.image.attached? %>
-                    <%= image_tag product.image, class: 'class="bd-placeholder-img card-img-top', height: 225, alt: product.name %>
+                    <%= image_tag product.image.variant(:main), class: 'class="bd-placeholder-img card-img-top', height: 225, alt: product.name %>
                     <% else %>
                     <%= image_tag("no_image_item.jpeg", class: 'class="bd-placeholder-img card-img-top', height: 225, alt: 'Photo coming soon') %>
                   <% end %>

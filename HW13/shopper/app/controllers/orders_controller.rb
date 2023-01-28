@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.create(cart: current_cart)
 
+    cookies.delete(:cart_id)
     redirect_to order_path(@order), notice: 'Order was created successfully'
   end
 

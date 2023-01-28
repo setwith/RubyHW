@@ -7,7 +7,6 @@ class OrderMailer < ApplicationMailer
   def new_order_email
     @user = params[:user]
     @order = params[:order]
-    @greeting = 'Hi'
 
     @line_items = @order.cart.line_items
 

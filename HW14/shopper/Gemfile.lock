@@ -95,6 +95,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.0)
@@ -227,6 +228,8 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     redis (4.8.0)
+    redis-client (0.12.1)
+      connection_pool
     reline (0.3.2)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -243,6 +246,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sidekiq (7.0.3)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -295,6 +303,7 @@ DEPENDENCIES
   ransack (~> 3.2)
   redis (~> 4.0)
   sassc-rails
+  sidekiq
   sprockets-rails
   stimulus-rails
   turbo-rails

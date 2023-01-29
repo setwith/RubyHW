@@ -1,4 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   get 'search', to: 'search#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

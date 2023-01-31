@@ -4,6 +4,6 @@ class MonthWinnerJob
   include Sidekiq::Job
 
   def perform(*_args)
-    puts 'Hello world'
+    MonthWinnerService.new(winners: 'MonthWinner').call
   end
 end

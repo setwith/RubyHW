@@ -9,7 +9,7 @@ class MonthWinnerService
     users = month_order.map(&:user).uniq.sample(2)
 
     users.each do |user|
-      OrderMailer.winner(user).delivery_later
+      OrderMailer.winner(user).deliver_later
     end
   end
 

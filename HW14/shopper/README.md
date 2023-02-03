@@ -40,3 +40,26 @@ rails s
 `User: user@example.com`
 
 `Password: password`
+
+# Sidekiq
+
+- Install Redis 6.0 or greater:
+
+```ruby
+brew install redis
+```
+
+or
+
+```ruby
+sudo apt install redis-server
+```
+
+- Run Sidekiq
+
+```ruby
+bundle exec sidekiq
+```
+
+- Log in as admin
+- Open in browser `http://localhost:3000/sidekiq`

@@ -1,0 +1,6 @@
+:scheduler:
+  :schedule:
+    month_winner:
+      cron: "0 9 1 * *" # Runs at 09:00 on day-of-month 1
+      class: MonthWinnerJob
+      queue: "default"

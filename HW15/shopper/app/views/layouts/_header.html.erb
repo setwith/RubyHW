@@ -22,7 +22,7 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
-                  <%= link_to "Cart", cart_path, class: "dropdown-item" %>
+                  <%= link_to "Cart (#{render 'carts/line_item_counter'})", cart_path, class: "dropdown-item" %>
                 </li>
                 <li>
                   <%= link_to "Orders", orders_path, class: "dropdown-item" %>

@@ -1,36 +1,22 @@
-<div class="col" %>
-  <div class="card shadow-sm">
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <% @products.each do |product| %>
-              <div class="col">
-                <div class="card shadow-sm" style="width: 20rem;">
-                  <% if product.image.attached? %>
-                    <%= image_tag product.image.variant(:main), class: 'class="bd-placeholder-img card-img-top', height: 225, alt: product.name %>
-                    <% else %>
-                    <%= image_tag("no_image_item.jpeg", class: 'class="bd-placeholder-img card-img-top', height: 225, alt: 'Photo coming soon') %>
-                  <% end %>
-                  <div class="card-body">
-                    <p class="card-text"><%= link_to product.name, product %></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                      <%if user_signed_in? %>
-                        <%= turbo_frame_tag "add_button" do %>
-                          <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
-                        <% end %>
-                      <% else %>
-                        <%= link_to'Add to cart', new_user_session_path, class:"btn btn-sm btn-outline-secondary" %>
-                      <% end %>
-                      </div>
-                      <small class="text-muted"><%= number_to_currency(product.price) %></small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+<div class="col">
+  <div class="card shadow-sm" style="width: 20rem;">
+    <% if product.image.attached? %>
+      <%= image_tag product.image.variant(:main), class: 'class="bd-placeholder-img card-img-top', height: 225, alt: product.name %>
+      <% else %>
+      <%= image_tag("no_image_item.jpeg", class: 'class="bd-placeholder-img card-img-top', height: 225, alt: 'Photo coming soon') %>
+    <% end %>
+    <div class="card-body">
+      <p class="card-text"><%= link_to product.name, product %></p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <%#= turbo_frame_tag "add_button" do %>
+            <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
+          <%# end %>
         </div>
+        <small class="text-muted"><%= number_to_currency(product.price) %></small>
       </div>
     </div>
   </div>
 </div>
+
+        

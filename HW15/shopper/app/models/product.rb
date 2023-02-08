@@ -24,4 +24,8 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [100, 100]
     attachable.variant :main, resize_and_pad: [340, 340]
   end
+
+  after_create_commit -> { broadcast_prepend_to 'products', partial: 'products/products' }
+  after_update_commit -> { broadcast_prepend_to 'products', partial: 'products/products' }
+  after_destroy_commit -> { broadcast_remove_to 'products' }
 end

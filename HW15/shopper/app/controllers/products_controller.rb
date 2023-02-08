@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    MonthWinnerJob.perform_at(10.seconds.from_now)
   end
 
   def show

@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @line_items = current_cart.line_items.to_a
   end
 
   def show

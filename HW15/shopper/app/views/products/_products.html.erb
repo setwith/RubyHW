@@ -9,10 +9,9 @@
       <p class="card-text"><%= link_to product.name, product %></p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-        <%if user: user ? %>
-          <%#= turbo_frame_tag "add_button" do %>
-            <%= button_to 'Add to cart', line_items_path(product_id: product.id), class:"btn btn-sm btn-outline-secondary" %>
-          <%# end %>
+        <%if current_user %>
+          <%= render partial: 'products/product_cart_button', locals: { product: product, line_item: @line_items.find { |line_item| line_item.product_id == product.id } } %>
+          
         <% else %>
           <%= link_to'Add to cart', new_user_session_path, class:"btn btn-sm btn-outline-secondary" %>
         <% end %>

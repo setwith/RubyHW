@@ -22,7 +22,9 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
-                  <%= link_to "Cart (#{render 'carts/line_item_counter'})", cart_path, class: "dropdown-item" %>
+                  <%# turbo_frame_tag "items_count" do %>
+                   <%= link_to "Cart (#{render 'carts/line_item_counter'})", cart_path, class: "dropdown-item" %>
+                  <%# end %>
                 </li>
                 <li>
                   <%= link_to "Orders", orders_path, class: "dropdown-item" %>
